@@ -1,7 +1,7 @@
 "use client"
 import Link from "next/link"
 import { X, Menu } from "lucide-react"
-import { LogoLink } from "@/components/logo"
+import { Logo } from "@/components/logo"
 import { useMobileMenu } from "@/hooks/use-mobile-menu"
 
 interface MobileNavProps {
@@ -41,7 +41,7 @@ export function MobileNav({ links }: MobileNavProps) {
       >
         <div className="flex flex-col h-full">
           <div className="flex items-center justify-between p-4 border-b">
-            <LogoLink variant="default" />
+            <Logo variant="default" />
             <button
               onClick={closeMobileMenu}
               className="p-2 text-text-primary focus:outline-none"
