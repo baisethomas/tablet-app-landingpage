@@ -81,7 +81,7 @@ export default function LandingPage() {
                   className="text-xl text-text-secondary md:text-2xl animate-fade-in-down"
                   style={{ animationDelay: "0.2s" }}
                 >
-                  Capture the Word. Reflect with Clarity.
+                  Capture the Word. Write it on Your Heart.
                 </p>
                 <div
                   className="flex flex-col sm:flex-row gap-2 justify-center lg:justify-start animate-fade-in-down"
