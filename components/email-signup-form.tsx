@@ -42,18 +42,18 @@ export function EmailSignupForm({
   return (
     <div className={`w-full ${className}`}>
       {result?.success ? (
-        <div className="bg-green-50 border border-green-200 rounded-lg p-4 flex items-start gap-3 animate-fade-in">
-          <CheckCircle2 className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
+        <div className="bg-success-50 border border-success-200 rounded-lg p-4 flex items-start gap-3 animate-fade-in">
+          <CheckCircle2 className="h-5 w-5 text-success-500 mt-0.5 flex-shrink-0" />
           <div>
-            <h4 className="font-medium text-green-800">Thank you for signing up!</h4>
-            <p className="text-sm text-green-700 mt-1">{result.message}</p>
+            <h4 className="font-medium text-success-700">Thank you for signing up!</h4>
+            <p className="text-sm text-success-600 mt-1">{result.message}</p>
           </div>
         </div>
       ) : (
         <form action={handleSubmit} className="space-y-4">
           <div className="flex flex-col sm:flex-row gap-2">
             <Input
-              className="max-w-lg flex-1 transition-all duration-300 focus:ring-2 focus:ring-stone-300 focus:border-stone-300"
+              className="max-w-lg flex-1 transition-all duration-300 focus:ring-2 focus:ring-primary-300 focus:border-primary-300"
               placeholder={placeholder}
               name="email"
               type="email"
@@ -63,7 +63,7 @@ export function EmailSignupForm({
             />
             <Button
               type="submit"
-              className="bg-stone-900 text-white hover:bg-stone-800 transition-all duration-300 hover:scale-105"
+              className="bg-primary-500 text-white hover:bg-primary-600 transition-all duration-300 hover:scale-105"
               disabled={isLoading}
             >
               {isLoading ? (
@@ -80,7 +80,7 @@ export function EmailSignupForm({
           <div className="flex items-start space-x-2">
             <Checkbox id="consent" name="consent" required />
             <div className="grid gap-1.5 leading-none">
-              <Label htmlFor="consent" className="text-xs text-stone-500 font-normal leading-relaxed">
+              <Label htmlFor="consent" className="text-xs text-text-secondary font-normal leading-relaxed">
                 I agree to receive emails about Tablet app updates, features, and promotions. You can unsubscribe at any
                 time.
               </Label>
@@ -89,11 +89,11 @@ export function EmailSignupForm({
 
           {result && !result.success && (
             <div
-              className="bg-red-50 border border-red-200 rounded-lg p-3 flex items-center gap-2 animate-fade-in"
+              className="bg-error-50 border border-error-200 rounded-lg p-3 flex items-center gap-2 animate-fade-in"
               role="alert"
             >
-              <AlertCircle className="h-4 w-4 text-red-600 flex-shrink-0" />
-              <p className="text-sm text-red-700">{result.message}</p>
+              <AlertCircle className="h-4 w-4 text-error-500 flex-shrink-0" />
+              <p className="text-sm text-error-600">{result.message}</p>
             </div>
           )}
         </form>

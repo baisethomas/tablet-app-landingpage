@@ -26,68 +26,116 @@ const config = {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         primary: {
-          DEFAULT: "hsl(var(--primary))",
-          foreground: "hsl(var(--primary-foreground))",
+          DEFAULT: "#4A6D8C", // calm blue
+          foreground: "#FFFFFF",
+          50: "#EEF1F4",
+          100: "#D5DFE7",
+          200: "#ABBFCF",
+          300: "#819FB7",
+          400: "#5E839F",
+          500: "#4A6D8C", // base
+          600: "#3B5770",
+          700: "#2D4254",
+          800: "#1E2C38",
+          900: "#0F161C",
         },
         secondary: {
-          DEFAULT: "hsl(var(--secondary))",
-          foreground: "hsl(var(--secondary-foreground))",
+          DEFAULT: "#8A9BA8", // muted blue-gray
+          foreground: "#FFFFFF",
+          50: "#F4F6F7",
+          100: "#E3E8EC",
+          200: "#C7D1D9",
+          300: "#ABBAC6",
+          400: "#8A9BA8", // base
+          500: "#6F8394",
+          600: "#59697A",
+          700: "#434F5B",
+          800: "#2D353D",
+          900: "#161A1E",
+        },
+        bg: {
+          primary: "#FFFFFF", // background primary
+          secondary: "#F5F7F9", // background secondary
+        },
+        text: {
+          primary: "#333333", // text primary
+          secondary: "#666666", // text secondary
+        },
+        success: {
+          DEFAULT: "#4A8C6A", // muted green
+          foreground: "#FFFFFF",
+          50: "#EEF4F1",
+          100: "#D5E7DD",
+          200: "#ABCFBB",
+          300: "#81B799",
+          400: "#5E9F7C",
+          500: "#4A8C6A", // base
+          600: "#3B7055",
+          700: "#2D5440",
+          800: "#1E382A",
+          900: "#0F1C15",
+        },
+        error: {
+          DEFAULT: "#B55A5A", // muted red
+          foreground: "#FFFFFF",
+          50: "#F8EEEE",
+          100: "#EDDADA",
+          200: "#DBB5B5",
+          300: "#C98F8F",
+          400: "#B76A6A",
+          500: "#B55A5A", // base
+          600: "#914848",
+          700: "#6D3636",
+          800: "#482424",
+          900: "#241212",
+        },
+        warning: {
+          DEFAULT: "#D9A55A", // earth tone amber
+          foreground: "#FFFFFF",
+          50: "#FBF6EE",
+          100: "#F5EAD8",
+          200: "#EBD5B1",
+          300: "#E1C08A",
+          400: "#D9A55A", // base
+          500: "#C99339",
+          600: "#A1752E",
+          700: "#795822",
+          800: "#503A17",
+          900: "#281D0B",
+        },
+        info: {
+          DEFAULT: "#5A7DB5", // calm blue
+          foreground: "#FFFFFF",
+          50: "#EEF1F7",
+          100: "#D8E0EC",
+          200: "#B1C1D9",
+          300: "#8AA2C6",
+          400: "#5A7DB5", // base
+          500: "#456497",
+          600: "#375078",
+          700: "#293C5A",
+          800: "#1C283C",
+          900: "#0E141E",
         },
         destructive: {
-          DEFAULT: "hsl(var(--destructive))",
-          foreground: "hsl(var(--destructive-foreground))",
+          DEFAULT: "#B55A5A",
+          foreground: "#FFFFFF",
         },
         muted: {
-          DEFAULT: "hsl(var(--muted))",
-          foreground: "hsl(var(--muted-foreground))",
+          DEFAULT: "#F5F7F9",
+          foreground: "#666666",
         },
         accent: {
-          DEFAULT: "hsl(var(--accent))",
-          foreground: "hsl(var(--accent-foreground))",
+          DEFAULT: "#5A7DB5",
+          foreground: "#FFFFFF",
         },
         popover: {
-          DEFAULT: "hsl(var(--popover))",
-          foreground: "hsl(var(--popover-foreground))",
+          DEFAULT: "#FFFFFF",
+          foreground: "#333333",
         },
         card: {
-          DEFAULT: "hsl(var(--card))",
-          foreground: "hsl(var(--card-foreground))",
-        },
-        stone: {
-          50: "#fafaf9",
-          100: "#f5f5f4",
-          200: "#e7e5e4",
-          300: "#d6d3d1",
-          400: "#a8a29e",
-          500: "#78716c",
-          600: "#57534e",
-          700: "#44403c",
-          800: "#292524",
-          900: "#1c1917",
-        },
-        sky: {
-          50: "#f0f9ff",
-          100: "#e0f2fe",
-          200: "#bae6fd",
-          300: "#7dd3fc",
-          400: "#38bdf8",
-          500: "#0ea5e9",
-          600: "#0284c7",
-          700: "#0369a1",
-          800: "#075985",
-          900: "#0c4a6e",
-        },
-        teal: {
-          50: "#f0fdfa",
-          100: "#ccfbf1",
-          200: "#99f6e4",
-          300: "#5eead4",
-          400: "#2dd4bf",
-          500: "#14b8a6",
-          600: "#0d9488",
-          700: "#0f766e",
-          800: "#115e59",
-          900: "#134e4a",
+          DEFAULT: "#FFFFFF",
+          foreground: "#333333",
         },
       },
       borderRadius: {
