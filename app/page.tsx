@@ -6,15 +6,16 @@ import { Button } from "@/components/ui/button"
 import { Mic, FileText, Book, PenTool, Archive, Mail } from "lucide-react"
 import { LogoLink } from "@/components/logo"
 import { EmailSignupForm } from "@/components/email-signup-form"
+import { MobileNav } from "@/components/mobile-nav"
 
 export default function LandingPage() {
   const [billingPeriod, setBillingPeriod] = useState<"monthly" | "yearly">("monthly")
 
   return (
     <div className="flex min-h-screen flex-col bg-bg-primary text-text-primary">
-      <header className="px-6 lg:px-8 h-20 flex items-center border-b">
+      <header className="px-6 lg:px-8 h-20 flex items-center justify-between border-b">
         <LogoLink className="mr-8" />
-        <nav className="ml-auto flex gap-6 sm:gap-8">
+        <nav className="hidden md:flex gap-6 sm:gap-8">
           <Link
             className="text-sm font-medium hover:underline underline-offset-4 transition-all duration-200 hover:-translate-y-0.5 text-text-primary"
             href="#features"
@@ -40,6 +41,14 @@ export default function LandingPage() {
             Download
           </Link>
         </nav>
+        <MobileNav
+          links={[
+            { href: "#features", label: "Features" },
+            { href: "#how-it-works", label: "How It Works" },
+            { href: "#pricing", label: "Pricing" },
+            { href: "#download", label: "Download" },
+          ]}
+        />
       </header>
       <main className="flex-1">
         <section className="w-full py-12 md:py-24 lg:py-32 relative overflow-hidden">
@@ -58,7 +67,7 @@ export default function LandingPage() {
 
           <div className="container px-4 md:px-6 relative z-10">
             <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 items-center">
-              <div className="space-y-4">
+              <div className="space-y-4 text-center lg:text-left">
                 <div className="inline-flex items-center rounded-lg bg-bg-secondary/80 backdrop-blur-sm px-3 py-1 text-sm font-medium animate-fade-in-down">
                   Spiritual Growth Made Simple
                 </div>
@@ -75,7 +84,7 @@ export default function LandingPage() {
                   Capture the Word. Reflect with Clarity.
                 </p>
                 <div
-                  className="flex flex-col gap-2 min-[400px]:flex-row animate-fade-in-down"
+                  className="flex flex-col sm:flex-row gap-2 justify-center lg:justify-start animate-fade-in-down"
                   style={{ animationDelay: "0.3s" }}
                 >
                   <Button className="inline-flex h-10 items-center justify-center rounded-md bg-primary-500 px-8 text-sm font-medium text-white shadow-sm hover:bg-primary-600 transition-all duration-300 hover:scale-105">
@@ -182,7 +191,7 @@ export default function LandingPage() {
                 </p>
               </div>
             </div>
-            <div className="mx-auto grid max-w-5xl items-center gap-6 py-12 lg:grid-cols-3">
+            <div className="mx-auto grid max-w-5xl items-center gap-6 py-12 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
               <div
                 className="flex flex-col items-center space-y-4 rounded-lg border border-secondary-200 p-6 transition-all duration-300 hover:shadow-md hover:-translate-y-1 animate-fade-in-up"
                 style={{ animationDelay: "0.1s" }}
@@ -719,9 +728,11 @@ export default function LandingPage() {
           </div>
         </section>
       </main>
-      <footer className="flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 border-t">
-        <LogoLink variant="icon" className="mr-2" />
-        <p className="text-xs text-text-secondary">© {new Date().getFullYear()} Tablet App. All rights reserved.</p>
+      <footer className="flex flex-col gap-4 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 border-t">
+        <div className="flex items-center">
+          <LogoLink variant="icon" className="mr-2" />
+          <p className="text-xs text-text-secondary">© {new Date().getFullYear()} Tablet App. All rights reserved.</p>
+        </div>
         <nav className="sm:ml-auto flex gap-4 sm:gap-6">
           <Link
             className="text-xs hover:underline underline-offset-4 text-text-secondary transition-all duration-200 hover:-translate-y-0.5"
