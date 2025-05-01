@@ -1,4 +1,7 @@
+"use client"
+
 import Link from "next/link"
+import { useState } from "react"
 
 interface LogoProps {
   variant?: "default" | "icon"
@@ -6,31 +9,23 @@ interface LogoProps {
 }
 
 export function Logo({ variant = "default", className = "" }: LogoProps) {
-  // Direct reference to the uploaded image URL
-  const logoUrl =
-    "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/logo-inline-GfvUQH8rWrT5L4cTX6te3NuKShfihl.png"
+  const [imageError, setImageError] = useState(false)
 
   return (
     <div className={`flex items-center ${className}`}>
       {variant === "default" ? (
-        <img
-          src={logoUrl || "/placeholder.svg"}
-          alt="Tablet Logo"
-          className="h-8 w-auto"
-          onError={(e) => {
-            // Fallback if image fails to load
-            const target = e.target as HTMLImageElement
-            target.style.display = "none"
-            const parent = target.parentElement
-            if (parent) {
-              // Create fallback text
-              const fallback = document.createElement("span")
-              fallback.textContent = "Tablet"
-              fallback.className = "text-2xl font-semibold text-primary-500"
-              parent.appendChild(fallback)
-            }
-          }}
-        />
+        <>
+          {!imageError ? (
+            <img
+              src="/images/logo-inline.png"
+              alt="Tablet Logo"
+              className="h-8 w-auto"
+              onError={() => setImageError(true)}
+            />
+          ) : (
+            <span className="text-2xl font-semibold text-primary-500">Tablet</span>
+          )}
+        </>
       ) : (
         <svg
           width="32"

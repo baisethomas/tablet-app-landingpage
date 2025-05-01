@@ -713,13 +713,13 @@ export default function LandingPage() {
         <nav className="flex gap-4 sm:gap-6">
           <Link
             className="text-xs hover:underline underline-offset-4 text-text-secondary transition-all duration-200 hover:-translate-y-0.5"
-            href="#"
+            href="/terms"
           >
             Terms of Service
           </Link>
           <Link
             className="text-xs hover:underline underline-offset-4 text-text-secondary transition-all duration-200 hover:-translate-y-0.5"
-            href="#"
+            href="/privacy"
           >
             Privacy
           </Link>
