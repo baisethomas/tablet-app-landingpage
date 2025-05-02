@@ -52,33 +52,30 @@ export default function LandingPage() {
       </header>
       <main className="flex-1">
         <section className="w-full py-12 md:py-24 lg:py-32 relative overflow-hidden">
-          {/* Updated background with new color palette */}
-          <div className="absolute inset-0 bg-gradient-to-br from-info-50 via-bg-secondary to-primary-50 z-0">
-            <div className="absolute top-20 right-20 w-64 h-64 rounded-full bg-info-100/40 blur-3xl animate-pulse-soft"></div>
-            <div
-              className="absolute bottom-10 left-10 w-72 h-72 rounded-full bg-primary-100/30 blur-3xl animate-pulse-soft"
-              style={{ animationDelay: "1s" }}
-            ></div>
-            <div
-              className="absolute top-40 left-1/4 w-48 h-48 rounded-full bg-secondary-100/50 blur-3xl animate-pulse-soft"
-              style={{ animationDelay: "2s" }}
-            ></div>
+          {/* Hero background with worship image */}
+          <div className="absolute inset-0 z-0">
+            <div className="absolute inset-0 bg-gradient-to-r from-purple-900/80 to-blue-900/80 mix-blend-multiply z-10"></div>
+            <img
+              src="/images/worship-background.jpg"
+              alt="Worship service"
+              className="w-full h-full object-cover object-center"
+            />
           </div>
 
-          <div className="container px-4 md:px-6 relative z-10">
+          <div className="container px-4 md:px-6 relative z-20">
             <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 items-center">
               <div className="space-y-4 text-center lg:text-left">
-                <div className="inline-flex items-center rounded-lg bg-bg-secondary/80 backdrop-blur-sm px-3 py-1 text-sm font-medium animate-fade-in-down">
+                <div className="inline-flex items-center rounded-lg bg-white/10 backdrop-blur-sm px-3 py-1 text-sm font-medium animate-fade-in-down text-white">
                   Spiritual Growth Made Simple
                 </div>
                 <h1
-                  className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none animate-fade-in-down text-text-primary"
+                  className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none animate-fade-in-down text-white"
                   style={{ animationDelay: "0.1s" }}
                 >
                   Tablet
                 </h1>
                 <p
-                  className="text-xl text-text-secondary md:text-2xl animate-fade-in-down"
+                  className="text-xl text-white/90 md:text-2xl animate-fade-in-down"
                   style={{ animationDelay: "0.2s" }}
                 >
                   Capture the Word. Write it on Your Heart.
@@ -87,12 +84,12 @@ export default function LandingPage() {
                   className="flex flex-col sm:flex-row gap-2 justify-center lg:justify-start animate-fade-in-down"
                   style={{ animationDelay: "0.3s" }}
                 >
-                  <Button className="inline-flex h-10 items-center justify-center rounded-md bg-primary-500 px-8 text-sm font-medium text-white shadow-sm hover:bg-primary-600 transition-all duration-300 hover:scale-105">
+                  <Button className="inline-flex h-10 items-center justify-center rounded-md bg-white px-8 text-sm font-medium text-primary-700 shadow-sm hover:bg-white/90 transition-all duration-300 hover:scale-105">
                     Join the Beta
                   </Button>
                   <Button
                     variant="outline"
-                    className="inline-flex h-10 items-center justify-center rounded-md border border-secondary-200 bg-white/80 backdrop-blur-sm px-8 text-sm font-medium shadow-sm hover:bg-bg-secondary transition-all duration-300 hover:scale-105"
+                    className="inline-flex h-10 items-center justify-center rounded-md border border-white/30 bg-transparent px-8 text-sm font-medium text-white shadow-sm hover:bg-white/10 transition-all duration-300 hover:scale-105"
                   >
                     Learn More
                   </Button>
@@ -102,7 +99,7 @@ export default function LandingPage() {
                 className="mx-auto w-full max-w-sm lg:max-w-none flex items-center justify-center animate-fade-in-up"
                 style={{ animationDelay: "0.4s" }}
               >
-                <div className="relative w-[280px] h-[560px] rounded-[40px] border-8 border-text-primary overflow-hidden shadow-xl bg-white transition-all duration-500 hover:shadow-2xl">
+                <div className="relative w-[280px] h-[560px] rounded-[40px] border-8 border-white/20 overflow-hidden shadow-xl bg-white transition-all duration-500 hover:shadow-2xl">
                   <div className="absolute top-0 left-0 right-0 h-6 bg-text-primary rounded-t-[32px]"></div>
                   <div className="p-4 h-full flex flex-col">
                     <div className="flex justify-between items-center mb-6 mt-4">
@@ -266,6 +263,7 @@ export default function LandingPage() {
           </div>
         </section>
 
+        {/* Rest of the page content remains unchanged */}
         <section id="how-it-works" className="w-full py-12 md:py-24 lg:py-32 relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-tr from-bg-secondary via-info-50 to-bg-secondary z-0">
             <div className="absolute bottom-40 right-20 w-80 h-80 rounded-full bg-primary-100/20 blur-3xl animate-pulse-soft"></div>
