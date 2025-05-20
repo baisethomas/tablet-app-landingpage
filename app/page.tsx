@@ -674,7 +674,7 @@ export default function LandingPage() {
                 </p>
               </div>
               <div className="w-full max-w-md space-y-2 animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
-                <EmailSignupForm buttonText="Notify Me" />
+                <EmailSignupForm buttonText="Notify Me" darkMode={true} />
               </div>
               <div
                 className="flex flex-col sm:flex-row gap-4 mt-6 animate-fade-in-up"

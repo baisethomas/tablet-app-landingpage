@@ -7,28 +7,46 @@ import { Checkbox } from "@/components/ui/checkbox"
 import { Label } from "@/components/ui/label"
 import { subscribeToNewsletter } from "@/actions/email-signup"
 import { Loader2, CheckCircle2, AlertCircle } from "lucide-react"
+import { isValidEmail } from "@/utils/email-utils"
 
 interface EmailSignupFormProps {
   buttonText?: string
   placeholder?: string
   className?: string
+  darkMode?: boolean
 }
 
 export function EmailSignupForm({
   buttonText = "Subscribe",
   placeholder = "Enter your email",
   className = "",
+  darkMode = false,
 }: EmailSignupFormProps) {
   const [isLoading, setIsLoading] = useState(false)
   const [result, setResult] = useState<{ success: boolean; message: string } | null>(null)
+  const [email, setEmail] = useState("")
+  const [emailError, setEmailError] = useState("")
 
   async function handleSubmit(formData: FormData) {
+    // Client-side validation
+    const emailValue = formData.get("email") as string
+    if (!isValidEmail(emailValue)) {
+      setEmailError("Please enter a valid email address")
+      return
+    }
+
     setIsLoading(true)
     setResult(null)
+    setEmailError("")
 
     try {
       const response = await subscribeToNewsletter(formData)
       setResult(response)
+
+      // Clear the form on success
+      if (response.success) {
+        setEmail("")
+      }
     } catch (error) {
       setResult({
         success: false,
@@ -52,18 +70,32 @@ export function EmailSignupForm({
       ) : (
         <form action={handleSubmit} className="space-y-4">
           <div className="flex flex-col sm:flex-row gap-2">
-            <Input
-              className="max-w-lg flex-1 transition-all duration-300 focus:ring-2 focus:ring-primary-300 focus:border-primary-300"
-              placeholder={placeholder}
-              name="email"
-              type="email"
-              required
-              disabled={isLoading}
-              aria-label="Email address"
-            />
+            <div className="flex-1">
+              <Input
+                className={`max-w-lg w-full transition-all duration-300 focus:ring-2 focus:ring-primary-300 focus:border-primary-300 ${
+                  emailError ? "border-error-500 focus:ring-error-300 focus:border-error-300" : ""
+                } ${darkMode ? "bg-white/10 text-white placeholder:text-white/60" : ""}`}
+                placeholder={placeholder}
+                name="email"
+                type="email"
+                required
+                disabled={isLoading}
+                aria-label="Email address"
+                value={email}
+                onChange={(e) => {
+                  setEmail(e.target.value)
+                  if (emailError && isValidEmail(e.target.value)) {
+                    setEmailError("")
+                  }
+                }}
+              />
+              {emailError && <p className="text-xs text-error-500 mt-1">{emailError}</p>}
+            </div>
             <Button
               type="submit"
-              className="bg-primary-500 text-white hover:bg-primary-600 transition-all duration-300 hover:scale-105"
+              className={`bg-primary-500 text-white hover:bg-primary-600 transition-all duration-300 hover:scale-105 ${
+                darkMode ? "bg-white text-primary-700 hover:bg-white/90" : ""
+              }`}
               disabled={isLoading}
             >
               {isLoading ? (
@@ -80,7 +112,10 @@ export function EmailSignupForm({
           <div className="flex items-start space-x-2">
             <Checkbox id="consent" name="consent" required />
             <div className="grid gap-1.5 leading-none">
-              <Label htmlFor="consent" className="text-xs text-text-secondary font-normal leading-relaxed">
+              <Label
+                htmlFor="consent"
+                className={`text-xs ${darkMode ? "text-white/80" : "text-text-secondary"} font-normal leading-relaxed`}
+              >
                 I agree to receive emails about Tablet app updates, features, and promotions. You can unsubscribe at any
                 time.
               </Label>

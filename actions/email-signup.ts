@@ -23,7 +23,17 @@ export async function subscribeToNewsletter(formData: FormData) {
     const email = formData.get("email") as string
     const consent = formData.get("consent") === "on"
 
+    // Validate the data
     const validatedData = emailSchema.parse({ email, consent })
+
+    // Check if API key is available
+    if (!process.env.EMAIL_PROVIDER_API_KEY) {
+      console.error("Missing EMAIL_PROVIDER_API_KEY environment variable")
+      return {
+        success: false,
+        message: "Server configuration error. Please try again later.",
+      }
+    }
 
     // Add subscriber to your list (you would typically store this in a database)
     // For now, we'll just send a confirmation email using Resend
@@ -36,8 +46,13 @@ export async function subscribeToNewsletter(formData: FormData) {
 
     if (error) {
       console.error("Resend API error:", error)
-      throw new Error(error.message)
+      return {
+        success: false,
+        message: "Failed to send confirmation email. Please try again later.",
+      }
     }
+
+    console.log("Email sent successfully:", data)
 
     // Return success response
     return {

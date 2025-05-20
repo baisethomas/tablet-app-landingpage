@@ -1,6 +1,16 @@
 export function WelcomeEmailTemplate({ email }: { email: string }) {
+  // Get the current year for the copyright
+  const currentYear = new Date().getFullYear()
+
   return `
-    <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Welcome to Tablet App</title>
+    </head>
+    <body style="font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
       <div style="text-align: center; margin-bottom: 20px;">
         <img src="https://yourdomain.com/images/tablet-logo.png" alt="Tablet App Logo" style="max-width: 120px;" />
       </div>
@@ -34,7 +44,7 @@ export function WelcomeEmailTemplate({ email }: { email: string }) {
       
       <div style="border-top: 1px solid #e7e5e4; margin-top: 30px; padding-top: 20px; text-align: center;">
         <p style="color: #a8a29e; font-size: 12px;">
-          &copy; ${new Date().getFullYear()} Tablet App. All rights reserved.
+          &copy; ${currentYear} Tablet App. All rights reserved.
         </p>
         <p style="color: #a8a29e; font-size: 12px;">
           You're receiving this email because you signed up for updates about Tablet App.
@@ -42,6 +52,7 @@ export function WelcomeEmailTemplate({ email }: { email: string }) {
           <a href="#" style="color: #78716c;">Unsubscribe</a> | <a href="#" style="color: #78716c;">Privacy Policy</a>
         </p>
       </div>
-    </div>
+    </body>
+    </html>
   `
 }
