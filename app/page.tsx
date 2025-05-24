@@ -61,16 +61,6 @@ export default function LandingPage() {
           >
             Pricing
           </Link>
-          <Link
-            className="text-sm font-medium hover:underline underline-offset-4 transition-all duration-200 hover:-translate-y-0.5 text-text-primary"
-            href="#download"
-            onClick={(e) => {
-              e.preventDefault()
-              scrollToSection("download")
-            }}
-          >
-            Download
-          </Link>
         </nav>
         <MobileNav
           links={[
@@ -136,71 +126,26 @@ export default function LandingPage() {
                 className="mx-auto w-full max-w-sm lg:max-w-none flex items-center justify-center animate-fade-in-up"
                 style={{ animationDelay: "0.4s" }}
               >
-                <div className="relative w-[280px] h-[560px] rounded-[40px] border-8 border-white/20 overflow-hidden shadow-xl bg-white transition-all duration-500 hover:shadow-2xl">
-                  <div className="absolute top-0 left-0 right-0 h-6 bg-text-primary rounded-t-[32px]"></div>
-                  <div className="p-4 h-full flex flex-col">
-                    <div className="flex justify-between items-center mb-6 mt-4">
-                      <span className="text-sm font-medium">9:41</span>
-                      <div className="flex space-x-2">
-                        <div className="w-4 h-4">
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          >
-                            <path d="M18 10a6 6 0 0 0-12 0v8h12v-8z" />
-                            <path d="M7 10V5a5 5 0 0 1 10 0v5" />
-                          </svg>
-                        </div>
-                        <div className="w-4 h-4">
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          >
-                            <path d="M6.33 20h11.34M12 2v2M17.38 3.79l-1.41 1.42M20 8h-2M17.38 12.21l-1.41-1.41M6.62 12.21l1.41-1.41M4 8h2M6.62 3.79l1.41 1.42" />
-                            <path d="M12 19a7 7 0 1 0 0-14 7 7 0 0 0 0 14Z" />
-                          </svg>
-                        </div>
-                        <div className="w-4 h-4">
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          >
-                            <path d="M5 4h14a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1Z" />
-                            <path d="M4 8h16" />
-                            <path d="M8 4v16" />
-                          </svg>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="flex-1 flex flex-col items-center justify-center space-y-6">
-                      <div className="text-center">
-                        <h3 className="text-lg font-semibold mb-2">Sunday Sermon</h3>
-                        <p className="text-sm text-text-secondary">Tap to start recording</p>
-                      </div>
-                      <div className="w-20 h-20 rounded-full bg-gradient-to-br from-info-100 to-primary-100 flex items-center justify-center border-2 border-secondary-300 shadow-lg animate-float">
-                        <div className="w-16 h-16 rounded-full bg-gradient-to-br from-primary-600 to-primary-500 flex items-center justify-center text-white shadow-inner transition-transform duration-300 hover:scale-110 cursor-pointer">
-                          <Mic className="h-8 w-8" />
-                        </div>
-                      </div>
-                      <div className="w-full max-w-[200px] bg-white/90 backdrop-blur-sm rounded-xl p-3 shadow-sm border border-secondary-200/50 transition-all duration-300 hover:shadow-md">
-                        <div className="text-xs text-text-secondary mb-1">Last recording:</div>
-                        <div className="text-sm font-medium">Faith & Patience - 32:14</div>
-                        <div className="mt-2 text-xs text-text-secondary">Matthew 17:20 referenced</div>
+                <div className="relative flex items-center justify-center">
+                  <div className="w-64 h-64 flex items-center justify-center">
+                    <img
+                      src="/images/hero-logo.png"
+                      alt="Tablet Notes Logo"
+                      className="w-full h-full object-contain drop-shadow-2xl transition-all duration-500 hover:scale-105 animate-float"
+                      onError={(e) => {
+                        // Fallback to a styled text logo if image fails to load
+                        e.currentTarget.style.display = "none"
+                        const fallback = e.currentTarget.nextElementSibling
+                        if (fallback) fallback.style.display = "flex"
+                      }}
+                    />
+                    <div
+                      className="w-full h-full hidden items-center justify-center bg-gradient-to-br from-primary-500 to-primary-600 rounded-2xl shadow-2xl"
+                      style={{ display: "none" }}
+                    >
+                      <div className="text-center text-white">
+                        <div className="text-4xl font-bold mb-2">Tablet</div>
+                        <div className="text-xl">Notes</div>
                       </div>
                     </div>
                   </div>

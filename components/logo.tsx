@@ -17,13 +17,13 @@ export function Logo({ variant = "default", className = "" }: LogoProps) {
         <>
           {!imageError ? (
             <img
-              src="/images/logo-inline.png"
-              alt="Tablet Logo"
-              className="h-8 w-auto"
+              src="/images/tablet-notes-logo.png"
+              alt="Tablet Notes Logo"
+              className="h-5 w-auto"
               onError={() => setImageError(true)}
             />
           ) : (
-            <span className="text-2xl font-semibold text-primary-500">Tablet</span>
+            <span className="text-2xl font-semibold text-primary-500">Tablet Notes</span>
           )}
         </>
       ) : (
