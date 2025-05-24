@@ -74,7 +74,7 @@ export function EmailSignupForm({
               <Input
                 className={`max-w-lg w-full transition-all duration-300 focus:ring-2 focus:ring-primary-300 focus:border-primary-300 ${
                   emailError ? "border-error-500 focus:ring-error-300 focus:border-error-300" : ""
-                } ${darkMode ? "bg-white/10 text-white placeholder:text-white/60" : ""}`}
+                } text-text-primary`}
                 placeholder={placeholder}
                 name="email"
                 type="email"
@@ -112,10 +112,7 @@ export function EmailSignupForm({
           <div className="flex items-start space-x-2">
             <Checkbox id="consent" name="consent" required />
             <div className="grid gap-1.5 leading-none">
-              <Label
-                htmlFor="consent"
-                className={`text-xs ${darkMode ? "text-white/80" : "text-text-secondary"} font-normal leading-relaxed`}
-              >
+              <Label htmlFor="consent" className="text-xs text-text-primary font-normal leading-relaxed">
                 I agree to receive emails about Tablet app updates, features, and promotions. You can unsubscribe at any
                 time.
               </Label>

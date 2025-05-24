@@ -38,7 +38,7 @@ export async function subscribeToNewsletter(formData: FormData) {
     // Add subscriber to your list (you would typically store this in a database)
     // For now, we'll just send a confirmation email using Resend
     const { data, error } = await resend.emails.send({
-      from: "Tablet App <notifications@yourdomain.com>", // Update with your verified domain
+      from: "Tablet App <onboarding@resend.dev>", // Using Resend's default domain
       to: validatedData.email,
       subject: "Welcome to Tablet App Beta",
       html: WelcomeEmailTemplate({ email: validatedData.email }),

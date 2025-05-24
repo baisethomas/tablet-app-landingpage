@@ -1,5 +1,4 @@
 "use client"
-import Link from "next/link"
 import { X, Menu } from "lucide-react"
 import { Logo } from "@/components/logo"
 import { useMobileMenu } from "@/hooks/use-mobile-menu"
@@ -11,8 +10,20 @@ interface MobileNavProps {
 export function MobileNav({ links }: MobileNavProps) {
   const { isMobileMenuOpen, toggleMobileMenu, closeMobileMenu } = useMobileMenu()
 
-  // Close menu when clicking a link
-  const handleLinkClick = () => {
+  // Function to handle smooth scrolling
+  const scrollToSection = (sectionId: string) => {
+    const section = document.getElementById(sectionId)
+    if (section) {
+      // Get the header height to offset the scroll position
+      const headerHeight = 80 // This should match your header height
+      const offsetPosition = section.offsetTop - headerHeight
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth",
+      })
+    }
+    // Close the mobile menu after clicking a link
     closeMobileMenu()
   }
 
@@ -52,14 +63,18 @@ export function MobileNav({ links }: MobileNavProps) {
           </div>
           <nav className="flex flex-col p-4 space-y-4">
             {links.map((link) => (
-              <Link
+              <a
                 key={link.href}
                 href={link.href}
                 className="text-lg font-medium py-2 text-text-primary hover:text-primary-500 transition-colors"
-                onClick={handleLinkClick}
+                onClick={(e) => {
+                  e.preventDefault()
+                  const sectionId = link.href.replace("#", "")
+                  scrollToSection(sectionId)
+                }}
               >
                 {link.label}
-              </Link>
+              </a>
             ))}
           </nav>
         </div>

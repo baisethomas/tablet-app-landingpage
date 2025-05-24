@@ -12,7 +12,7 @@ export function WelcomeEmailTemplate({ email }: { email: string }) {
     </head>
     <body style="font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
       <div style="text-align: center; margin-bottom: 20px;">
-        <img src="https://yourdomain.com/images/tablet-logo.png" alt="Tablet App Logo" style="max-width: 120px;" />
+        <h1 style="color: #4A6D8C; margin: 0;">Tablet</h1>
       </div>
       
       <h2 style="color: #292524; font-size: 24px; margin-bottom: 20px;">Welcome to Tablet App!</h2>

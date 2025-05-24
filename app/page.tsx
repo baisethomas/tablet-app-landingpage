@@ -11,32 +11,63 @@ import { MobileNav } from "@/components/mobile-nav"
 export default function LandingPage() {
   const [billingPeriod, setBillingPeriod] = useState<"monthly" | "yearly">("monthly")
 
+  // Function to handle smooth scrolling
+  const scrollToSection = (sectionId: string) => {
+    const section = document.getElementById(sectionId)
+    if (section) {
+      // Get the header height to offset the scroll position
+      const headerHeight = 80 // This should match your header height
+      const offsetPosition = section.offsetTop - headerHeight
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth",
+      })
+    }
+  }
+
   return (
     <div className="flex min-h-screen flex-col bg-bg-primary text-text-primary">
-      <header className="px-6 lg:px-8 h-20 flex items-center justify-between border-b">
+      <header className="px-6 lg:px-8 h-20 flex items-center justify-between border-b fixed top-0 left-0 right-0 bg-white z-50">
         <LogoLink className="mr-8" />
         <nav className="hidden md:flex gap-6 sm:gap-8">
           <Link
             className="text-sm font-medium hover:underline underline-offset-4 transition-all duration-200 hover:-translate-y-0.5 text-text-primary"
             href="#features"
+            onClick={(e) => {
+              e.preventDefault()
+              scrollToSection("features")
+            }}
           >
-            Features
+            Feature
           </Link>
           <Link
             className="text-sm font-medium hover:underline underline-offset-4 transition-all duration-200 hover:-translate-y-0.5 text-text-primary"
             href="#how-it-works"
+            onClick={(e) => {
+              e.preventDefault()
+              scrollToSection("how-it-works")
+            }}
           >
             How It Works
           </Link>
           <Link
             className="text-sm font-medium hover:underline underline-offset-4 transition-all duration-200 hover:-translate-y-0.5 text-text-primary"
             href="#pricing"
+            onClick={(e) => {
+              e.preventDefault()
+              scrollToSection("pricing")
+            }}
           >
             Pricing
           </Link>
           <Link
             className="text-sm font-medium hover:underline underline-offset-4 transition-all duration-200 hover:-translate-y-0.5 text-text-primary"
             href="#download"
+            onClick={(e) => {
+              e.preventDefault()
+              scrollToSection("download")
+            }}
           >
             Download
           </Link>
@@ -50,7 +81,9 @@ export default function LandingPage() {
           ]}
         />
       </header>
-      <main className="flex-1">
+      <main className="flex-1 pt-20">
+        {" "}
+        {/* Added padding-top to account for fixed header */}
         <section className="w-full py-12 md:py-24 lg:py-32 relative overflow-hidden">
           {/* Hero background with worship image */}
           <div className="absolute inset-0 z-0">
@@ -84,12 +117,16 @@ export default function LandingPage() {
                   className="flex flex-col sm:flex-row gap-2 justify-center lg:justify-start animate-fade-in-down"
                   style={{ animationDelay: "0.3s" }}
                 >
-                  <Button className="inline-flex h-10 items-center justify-center rounded-md bg-white px-8 text-sm font-medium text-primary-700 shadow-sm hover:bg-white/90 transition-all duration-300 hover:scale-105">
+                  <Button
+                    className="inline-flex h-10 items-center justify-center rounded-md bg-white px-8 text-sm font-medium text-primary-700 shadow-sm hover:bg-white/90 transition-all duration-300 hover:scale-105"
+                    onClick={() => scrollToSection("download")}
+                  >
                     Join the Beta
                   </Button>
                   <Button
                     variant="outline"
                     className="inline-flex h-10 items-center justify-center rounded-md border border-white/30 bg-transparent px-8 text-sm font-medium text-white shadow-sm hover:bg-white/10 transition-all duration-300 hover:scale-105"
+                    onClick={() => scrollToSection("features")}
                   >
                     Learn More
                   </Button>
@@ -172,7 +209,6 @@ export default function LandingPage() {
             </div>
           </div>
         </section>
-
         <section id="features" className="w-full py-12 md:py-24 lg:py-32 bg-bg-primary">
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
@@ -262,8 +298,6 @@ export default function LandingPage() {
             </div>
           </div>
         </section>
-
-        {/* Rest of the page content remains unchanged */}
         <section id="how-it-works" className="w-full py-12 md:py-24 lg:py-32 relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-tr from-bg-secondary via-info-50 to-bg-secondary z-0">
             <div className="absolute bottom-40 right-20 w-80 h-80 rounded-full bg-primary-100/20 blur-3xl animate-pulse-soft"></div>
@@ -341,7 +375,6 @@ export default function LandingPage() {
             </div>
           </div>
         </section>
-
         <section id="pricing" className="w-full py-12 md:py-24 lg:py-32 relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-bg-secondary via-info-50 to-bg-secondary z-0">
             <div className="absolute top-1/3 right-1/4 w-72 h-72 rounded-full bg-info-100/20 blur-3xl animate-pulse-soft"></div>
@@ -651,7 +684,6 @@ export default function LandingPage() {
             </div>
           </div>
         </section>
-
         <section id="download" className="w-full py-12 md:py-24 lg:py-32 border-t relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-b from-white via-info-50 to-white z-0">
             <div className="absolute top-1/4 left-1/4 w-64 h-64 rounded-full bg-primary-100/30 blur-3xl animate-pulse-soft"></div>
@@ -674,7 +706,7 @@ export default function LandingPage() {
                 </p>
               </div>
               <div className="w-full max-w-md space-y-2 animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
-                <EmailSignupForm buttonText="Notify Me" darkMode={true} />
+                <EmailSignupForm buttonText="Notify Me" />
               </div>
               <div
                 className="flex flex-col sm:flex-row gap-4 mt-6 animate-fade-in-up"
