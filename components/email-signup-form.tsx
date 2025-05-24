@@ -63,7 +63,7 @@ export function EmailSignupForm({
         <div className="bg-success-50 border border-success-200 rounded-lg p-4 flex items-start gap-3 animate-fade-in">
           <CheckCircle2 className="h-5 w-5 text-success-500 mt-0.5 flex-shrink-0" />
           <div>
-            <h4 className="font-medium text-success-700">Thank you for signing up!</h4>
+            <h4 className="font-medium text-success-700">Success!</h4>
             <p className="text-sm text-success-600 mt-1">{result.message}</p>
           </div>
         </div>
