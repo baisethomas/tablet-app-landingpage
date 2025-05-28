@@ -3,13 +3,14 @@
 import { useState } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { Mic, FileText, Book, PenTool, Archive, Mail } from "lucide-react"
+import { Mic, FileText, Book, PenTool, Archive, Mail, ChevronDown } from "lucide-react"
 import { LogoLink } from "@/components/logo"
 import { EmailSignupForm } from "@/components/email-signup-form"
 import { MobileNav } from "@/components/mobile-nav"
 
 export default function LandingPage() {
   const [billingPeriod, setBillingPeriod] = useState<"monthly" | "yearly">("monthly")
+  const [openFaq, setOpenFaq] = useState<number | null>(null)
 
   // Function to handle smooth scrolling
   const scrollToSection = (sectionId: string) => {
@@ -26,6 +27,10 @@ export default function LandingPage() {
     }
   }
 
+  const toggleFaq = (index: number) => {
+    setOpenFaq(openFaq === index ? null : index)
+  }
+
   return (
     <div className="flex min-h-screen flex-col bg-bg-primary text-text-primary">
       <header className="px-6 lg:px-8 h-20 flex items-center justify-between border-b fixed top-0 left-0 right-0 bg-white z-50">
@@ -39,7 +44,7 @@ export default function LandingPage() {
               scrollToSection("features")
             }}
           >
-            Feature
+            Features
           </Link>
           <Link
             className="text-sm font-medium hover:underline underline-offset-4 transition-all duration-200 hover:-translate-y-0.5 text-text-primary"
@@ -95,13 +100,18 @@ export default function LandingPage() {
                   className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none animate-fade-in-down text-white"
                   style={{ animationDelay: "0.1s" }}
                 >
-                  Tablet
+                  Never Miss a Moment of Inspiration
                 </h1>
                 <p
                   className="text-xl text-white/90 md:text-2xl animate-fade-in-down"
                   style={{ animationDelay: "0.2s" }}
                 >
-                  Capture the Word. Write it on Your Heart.
+                  TabletNotes helps you capture, remember, and grow from every sermon
+                </p>
+                <p className="text-lg text-white/80 max-w-2xl animate-fade-in-down" style={{ animationDelay: "0.25s" }}>
+                  We all know that feeling—a powerful sermon with insights you don't want to forget, but by Tuesday, the
+                  details are fuzzy. TabletNotes changes that, giving you a simple way to save and revisit those
+                  meaningful moments.
                 </p>
                 <div
                   className="flex flex-col sm:flex-row gap-2 justify-center lg:justify-start animate-fade-in-down"
@@ -111,14 +121,14 @@ export default function LandingPage() {
                     className="inline-flex h-10 items-center justify-center rounded-md bg-white px-8 text-sm font-medium text-primary-700 shadow-sm hover:bg-white/90 transition-all duration-300 hover:scale-105"
                     onClick={() => scrollToSection("download")}
                   >
-                    Join the Beta
+                    Join the Waitlist
                   </Button>
                   <Button
                     variant="outline"
                     className="inline-flex h-10 items-center justify-center rounded-md border border-white/30 bg-transparent px-8 text-sm font-medium text-white shadow-sm hover:bg-white/10 transition-all duration-300 hover:scale-105"
-                    onClick={() => scrollToSection("features")}
+                    onClick={() => scrollToSection("how-it-works")}
                   >
-                    Learn More
+                    See How It Works
                   </Button>
                 </div>
               </div>
@@ -127,28 +137,11 @@ export default function LandingPage() {
                 style={{ animationDelay: "0.4s" }}
               >
                 <div className="relative flex items-center justify-center">
-                  <div className="w-64 h-64 flex items-center justify-center">
-                    <img
-                      src="/images/hero-logo.png"
-                      alt="Tablet Notes Logo"
-                      className="w-full h-full object-contain drop-shadow-2xl transition-all duration-500 hover:scale-105 animate-float"
-                      onError={(e) => {
-                        // Fallback to a styled text logo if image fails to load
-                        e.currentTarget.style.display = "none"
-                        const fallback = e.currentTarget.nextElementSibling
-                        if (fallback) fallback.style.display = "flex"
-                      }}
-                    />
-                    <div
-                      className="w-full h-full hidden items-center justify-center bg-gradient-to-br from-primary-500 to-primary-600 rounded-2xl shadow-2xl"
-                      style={{ display: "none" }}
-                    >
-                      <div className="text-center text-white">
-                        <div className="text-4xl font-bold mb-2">Tablet</div>
-                        <div className="text-xl">Notes</div>
-                      </div>
-                    </div>
-                  </div>
+                  <img
+                    src="/images/tablet-logo-hero.png"
+                    alt="Tablet Notes Logo"
+                    className="w-64 h-64 object-contain drop-shadow-2xl transition-all duration-500 hover:scale-105 animate-float"
+                  />
                 </div>
               </div>
             </div>
@@ -159,13 +152,13 @@ export default function LandingPage() {
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
                 <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl animate-fade-in-down text-text-primary">
-                  Key Features
+                  Your Sermon Companion
                 </h2>
                 <p
                   className="max-w-[700px] text-text-secondary md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed animate-fade-in-down"
                   style={{ animationDelay: "0.1s" }}
                 >
-                  Everything you need to capture and reflect on spiritual teachings
+                  We've created the features you need to get more from every message
                 </p>
               </div>
             </div>
@@ -177,8 +170,10 @@ export default function LandingPage() {
                 <div className="flex h-12 w-12 items-center justify-center rounded-full bg-bg-secondary transition-transform duration-300 hover:scale-110">
                   <Mic className="h-6 w-6 text-primary-500" />
                 </div>
-                <h3 className="text-xl font-bold text-text-primary">One-Tap Recording</h3>
-                <p className="text-center text-text-secondary">Start recording a sermon or message with a single tap</p>
+                <h3 className="text-xl font-bold text-text-primary">Just Hit Record</h3>
+                <p className="text-center text-text-secondary">
+                  When the sermon starts, simply tap once and focus on the message—we'll handle the rest
+                </p>
               </div>
               <div
                 className="flex flex-col items-center space-y-4 rounded-lg border border-secondary-200 p-6 transition-all duration-300 hover:shadow-md hover:-translate-y-1 animate-fade-in-up"
@@ -187,9 +182,10 @@ export default function LandingPage() {
                 <div className="flex h-12 w-12 items-center justify-center rounded-full bg-bg-secondary transition-transform duration-300 hover:scale-110">
                   <FileText className="h-6 w-6 text-primary-500" />
                 </div>
-                <h3 className="text-xl font-bold text-text-primary">Automatic Transcription</h3>
+                <h3 className="text-xl font-bold text-text-primary">Words to Remember</h3>
                 <p className="text-center text-text-secondary">
-                  Once the session ends, the app generates a full transcript and summary
+                  After the service, find a complete transcript waiting for you—no more struggling to recall important
+                  points
                 </p>
               </div>
               <div
@@ -199,9 +195,9 @@ export default function LandingPage() {
                 <div className="flex h-12 w-12 items-center justify-center rounded-full bg-bg-secondary transition-transform duration-300 hover:scale-110">
                   <Book className="h-6 w-6 text-primary-500" />
                 </div>
-                <h3 className="text-xl font-bold text-text-primary">Scripture Recognition</h3>
+                <h3 className="text-xl font-bold text-text-primary">Bible Verses, Found</h3>
                 <p className="text-center text-text-secondary">
-                  Bible verses mentioned are detected and listed for easy reference
+                  We automatically spot Bible references and organize them for easy reference
                 </p>
               </div>
               <div
@@ -211,9 +207,9 @@ export default function LandingPage() {
                 <div className="flex h-12 w-12 items-center justify-center rounded-full bg-bg-secondary transition-transform duration-300 hover:scale-110">
                   <PenTool className="h-6 w-6 text-primary-500" />
                 </div>
-                <h3 className="text-xl font-bold text-text-primary">Personal Notes</h3>
+                <h3 className="text-xl font-bold text-text-primary">Your Thoughts Matter</h3>
                 <p className="text-center text-text-secondary">
-                  Add your own reflections and insights directly into the app
+                  Add your own reflections during or after the sermon—they'll sync perfectly with the recording
                 </p>
               </div>
               <div
@@ -223,9 +219,9 @@ export default function LandingPage() {
                 <div className="flex h-12 w-12 items-center justify-center rounded-full bg-bg-secondary transition-transform duration-300 hover:scale-110">
                   <Archive className="h-6 w-6 text-primary-500" />
                 </div>
-                <h3 className="text-xl font-bold text-text-primary">Organized Archive</h3>
+                <h3 className="text-xl font-bold text-text-primary">Everything in One Place</h3>
                 <p className="text-center text-text-secondary">
-                  Keep all your past recordings and notes in one easily accessible place
+                  Build your personal library of sermons, notes, and insights that grows with your faith journey
                 </p>
               </div>
               <div
@@ -235,9 +231,9 @@ export default function LandingPage() {
                 <div className="flex h-12 w-12 items-center justify-center rounded-full bg-bg-secondary transition-transform duration-300 hover:scale-110">
                   <Mail className="h-6 w-6 text-primary-500" />
                 </div>
-                <h3 className="text-xl font-bold text-text-primary">Share & Export</h3>
+                <h3 className="text-xl font-bold text-text-primary">Share What Moves You</h3>
                 <p className="text-center text-text-secondary">
-                  Easily share your notes or export transcripts to other applications
+                  Easily share meaningful moments with friends, family, or your small group with just a few taps
                 </p>
               </div>
             </div>
@@ -255,13 +251,13 @@ export default function LandingPage() {
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
                 <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl animate-fade-in-down text-text-primary">
-                  How It Works
+                  Simple Steps to Deeper Understanding
                 </h2>
                 <p
                   className="max-w-[700px] text-text-secondary md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed animate-fade-in-down"
                   style={{ animationDelay: "0.1s" }}
                 >
-                  Five simple steps to capture and reflect on spiritual teachings
+                  TabletNotes fits naturally into your Sunday routine
                 </p>
               </div>
             </div>
@@ -271,8 +267,10 @@ export default function LandingPage() {
                   <span className="font-bold">1</span>
                 </div>
                 <div className="space-y-2">
-                  <h3 className="text-xl font-bold text-text-primary">Sign up with your email</h3>
-                  <p className="text-text-secondary">Create your account in seconds and get started right away</p>
+                  <h3 className="text-xl font-bold text-text-primary">Sign up in seconds</h3>
+                  <p className="text-text-secondary">
+                    Create your account with just an email—no complicated forms or hoops to jump through
+                  </p>
                 </div>
               </div>
               <div className="flex items-start gap-4 animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
@@ -280,9 +278,9 @@ export default function LandingPage() {
                   <span className="font-bold">2</span>
                 </div>
                 <div className="space-y-2">
-                  <h3 className="text-xl font-bold text-text-primary">Tap Start Recording</h3>
+                  <h3 className="text-xl font-bold text-text-primary">Record your first sermon</h3>
                   <p className="text-text-secondary">
-                    When you're ready to capture a sermon, simply tap the record button
+                    When you're at church, open the app and tap the record button when the sermon begins
                   </p>
                 </div>
               </div>
@@ -291,8 +289,10 @@ export default function LandingPage() {
                   <span className="font-bold">3</span>
                 </div>
                 <div className="space-y-2">
-                  <h3 className="text-xl font-bold text-text-primary">Listen and capture the moment</h3>
-                  <p className="text-text-secondary">Be present in the moment while Tablet captures every word</p>
+                  <h3 className="text-xl font-bold text-text-primary">Be present in the moment</h3>
+                  <p className="text-text-secondary">
+                    Put your phone down and focus on the message—TabletNotes is working quietly in the background
+                  </p>
                 </div>
               </div>
               <div className="flex items-start gap-4 animate-fade-in-up" style={{ animationDelay: "0.4s" }}>
@@ -300,9 +300,9 @@ export default function LandingPage() {
                   <span className="font-bold">4</span>
                 </div>
                 <div className="space-y-2">
-                  <h3 className="text-xl font-bold text-text-primary">Receive your transcript and summary</h3>
+                  <h3 className="text-xl font-bold text-text-primary">Discover your sermon notes</h3>
                   <p className="text-text-secondary">
-                    Once it's done, the app generates a full transcript and concise summary
+                    After the service, find your transcript and a helpful summary waiting for you in the app
                   </p>
                 </div>
               </div>
@@ -311,9 +311,9 @@ export default function LandingPage() {
                   <span className="font-bold">5</span>
                 </div>
                 <div className="space-y-2">
-                  <h3 className="text-xl font-bold text-text-primary">Add personal notes and revisit any time</h3>
+                  <h3 className="text-xl font-bold text-text-primary">Add your personal touch</h3>
                   <p className="text-text-secondary">
-                    Add your own reflections and insights, then revisit whenever you need
+                    Highlight what resonated with you, add your thoughts, and revisit whenever you need a reminder
                   </p>
                 </div>
               </div>
@@ -332,13 +332,13 @@ export default function LandingPage() {
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
                 <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl animate-fade-in-down text-text-primary">
-                  Simple, Transparent Pricing
+                  Plans That Make Sense
                 </h2>
                 <p
                   className="max-w-[700px] text-text-secondary md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed animate-fade-in-down"
                   style={{ animationDelay: "0.1s" }}
                 >
-                  Choose the plan that fits your spiritual journey
+                  Whether you attend occasionally or every Sunday, we've got you covered
                 </p>
               </div>
             </div>
@@ -370,141 +370,18 @@ export default function LandingPage() {
             </div>
 
             <div className="grid gap-6 mt-8 md:grid-cols-2 max-w-4xl mx-auto">
-              {/* Free Plan */}
+              {/* Starter Plan */}
               <div
                 className="flex flex-col p-6 bg-white/80 backdrop-blur-sm shadow-sm rounded-lg border border-secondary-200 animate-fade-in-up transition-all duration-300 hover:shadow-md hover:-translate-y-1"
                 style={{ animationDelay: "0.3s" }}
               >
                 <div className="py-4">
-                  <h3 className="text-2xl font-bold text-text-primary">Free</h3>
+                  <h3 className="text-2xl font-bold text-text-primary">Starter</h3>
                   <div className="mt-4 flex items-baseline text-text-primary">
-                    <span className="text-5xl font-extrabold tracking-tight">$0</span>
-                    <span className="ml-1 text-xl font-semibold">/forever</span>
-                  </div>
-                  <p className="mt-4 text-sm text-text-secondary">Perfect for occasional listeners</p>
-                </div>
-                <ul className="space-y-3 py-6 text-sm text-text-primary">
-                  <li className="flex items-center">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      className="mr-2 h-4 w-4 text-success-500"
-                    >
-                      <polyline points="20 6 9 17 4 12"></polyline>
-                    </svg>
-                    5 recordings per month
-                  </li>
-                  <li className="flex items-center">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      className="mr-2 h-4 w-4 text-success-500"
-                    >
-                      <polyline points="20 6 9 17 4 12"></polyline>
-                    </svg>
-                    Basic transcription
-                  </li>
-                  <li className="flex items-center">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      className="mr-2 h-4 w-4 text-success-500"
-                    >
-                      <polyline points="20 6 9 17 4 12"></polyline>
-                    </svg>
-                    Scripture recognition
-                  </li>
-                  <li className="flex items-center text-secondary-400">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      className="mr-2 h-4 w-4 text-secondary-400"
-                    >
-                      <line x1="18" y1="6" x2="6" y2="18"></line>
-                      <line x1="6" y1="6" x2="18" y2="18"></line>
-                    </svg>
-                    Advanced summaries
-                  </li>
-                  <li className="flex items-center text-secondary-400">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      className="mr-2 h-4 w-4 text-secondary-400"
-                    >
-                      <line x1="18" y1="6" x2="6" y2="18"></line>
-                      <line x1="6" y1="6" x2="18" y2="18"></line>
-                    </svg>
-                    Cloud storage
-                  </li>
-                </ul>
-                <div className="mt-auto pt-6">
-                  <Button
-                    variant="outline"
-                    className="w-full transition-all duration-300 hover:scale-105 border-primary-300 text-primary-600 hover:bg-primary-50"
-                  >
-                    Get Started
-                  </Button>
-                </div>
-              </div>
-
-              {/* Premium Plan */}
-              <div
-                className="flex flex-col p-6 bg-gradient-to-br from-bg-secondary to-info-50 shadow-md rounded-lg border border-info-100 relative animate-fade-in-up transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
-                style={{ animationDelay: "0.4s" }}
-              >
-                <div className="absolute top-0 right-0 -mt-4 mr-4">
-                  <div className="inline-flex items-center rounded-full bg-info-100 px-2.5 py-0.5 text-xs font-semibold text-info-800">
-                    Popular
-                  </div>
-                </div>
-                <div className="py-4">
-                  <h3 className="text-2xl font-bold text-text-primary">Premium</h3>
-                  <div className="mt-4 flex items-baseline text-text-primary">
-                    <span className="text-5xl font-extrabold tracking-tight">
-                      {billingPeriod === "monthly" ? "$9.99" : "$7.99"}
-                    </span>
-                    <span className="ml-1 text-xl font-semibold">
-                      /{billingPeriod === "monthly" ? "month" : "month"}
-                    </span>
+                    <span className="text-5xl font-extrabold tracking-tight">Free</span>
                   </div>
                   <p className="mt-4 text-sm text-text-secondary">
-                    {billingPeriod === "yearly" && <span className="text-info-700 font-medium">Save 20%</span>} For
-                    regular church attendees
+                    Perfect for trying out TabletNotes or occasional church visits
                   </p>
                 </div>
                 <ul className="space-y-3 py-6 text-sm text-text-primary">
@@ -523,7 +400,7 @@ export default function LandingPage() {
                     >
                       <polyline points="20 6 9 17 4 12"></polyline>
                     </svg>
-                    Unlimited recordings
+                    5 sermon recordings each month
                   </li>
                   <li className="flex items-center">
                     <svg
@@ -540,7 +417,7 @@ export default function LandingPage() {
                     >
                       <polyline points="20 6 9 17 4 12"></polyline>
                     </svg>
-                    Enhanced transcription
+                    Transcripts for all your recordings
                   </li>
                   <li className="flex items-center">
                     <svg
@@ -557,7 +434,7 @@ export default function LandingPage() {
                     >
                       <polyline points="20 6 9 17 4 12"></polyline>
                     </svg>
-                    Advanced scripture insights
+                    Basic Bible verse detection
                   </li>
                   <li className="flex items-center">
                     <svg
@@ -574,7 +451,7 @@ export default function LandingPage() {
                     >
                       <polyline points="20 6 9 17 4 12"></polyline>
                     </svg>
-                    AI-powered summaries
+                    Add your own notes
                   </li>
                   <li className="flex items-center">
                     <svg
@@ -591,12 +468,155 @@ export default function LandingPage() {
                     >
                       <polyline points="20 6 9 17 4 12"></polyline>
                     </svg>
-                    10GB cloud storage
+                    30 days of storage
                   </li>
                 </ul>
                 <div className="mt-auto pt-6">
-                  <Button className="w-full bg-primary-500 text-white hover:bg-primary-600 transition-all duration-300 hover:scale-105">
-                    Subscribe Now
+                  <Button
+                    variant="outline"
+                    className="w-full transition-all duration-300 hover:scale-105 border-primary-300 text-primary-600 hover:bg-primary-50"
+                    onClick={() => scrollToSection("download")}
+                  >
+                    Join the Waitlist
+                  </Button>
+                </div>
+              </div>
+
+              {/* Complete Plan */}
+              <div
+                className="flex flex-col p-6 bg-gradient-to-br from-bg-secondary to-info-50 shadow-md rounded-lg border border-info-100 relative animate-fade-in-up transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
+                style={{ animationDelay: "0.4s" }}
+              >
+                <div className="absolute top-0 right-0 -mt-4 mr-4">
+                  <div className="inline-flex items-center rounded-full bg-info-100 px-2.5 py-0.5 text-xs font-semibold text-info-800">
+                    Popular
+                  </div>
+                </div>
+                <div className="py-4">
+                  <h3 className="text-2xl font-bold text-text-primary">Complete</h3>
+                  <div className="mt-4 flex items-baseline text-text-primary">
+                    <span className="text-5xl font-extrabold tracking-tight">
+                      {billingPeriod === "monthly" ? "$9.99" : "$7.99"}
+                    </span>
+                    <span className="ml-1 text-xl font-semibold">
+                      /{billingPeriod === "monthly" ? "month" : "month"}
+                    </span>
+                  </div>
+                  <p className="mt-4 text-sm text-text-secondary">
+                    {billingPeriod === "yearly" && <span className="text-info-700 font-medium">Save 20%</span>} For
+                    regular churchgoers who want to get the most from every sermon
+                  </p>
+                </div>
+                <ul className="space-y-3 py-6 text-sm text-text-primary">
+                  <li className="flex items-center">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="mr-2 h-4 w-4 text-success-500"
+                    >
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    Record as many sermons as you want
+                  </li>
+                  <li className="flex items-center">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="mr-2 h-4 w-4 text-success-500"
+                    >
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    Better transcripts with higher accuracy
+                  </li>
+                  <li className="flex items-center">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="mr-2 h-4 w-4 text-success-500"
+                    >
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    Smart Bible verse detection with context
+                  </li>
+                  <li className="flex items-center">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="mr-2 h-4 w-4 text-success-500"
+                    >
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    Thoughtful sermon summaries
+                  </li>
+                  <li className="flex items-center">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="mr-2 h-4 w-4 text-success-500"
+                    >
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    Keep your recordings forever
+                  </li>
+                  <li className="flex items-center">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="mr-2 h-4 w-4 text-success-500"
+                    >
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    Access from all your devices
+                  </li>
+                </ul>
+                <div className="mt-auto pt-6">
+                  <Button
+                    className="w-full bg-primary-500 text-white hover:bg-primary-600 transition-all duration-300 hover:scale-105"
+                    onClick={() => scrollToSection("download")}
+                  >
+                    Join the Waitlist
                   </Button>
                 </div>
               </div>
@@ -629,6 +649,72 @@ export default function LandingPage() {
             </div>
           </div>
         </section>
+        {/* New FAQ Section */}
+        <section id="faq" className="w-full py-12 md:py-24 lg:py-32 relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-tr from-bg-secondary via-info-50 to-bg-secondary z-0">
+            <div className="absolute bottom-40 right-20 w-80 h-80 rounded-full bg-primary-100/20 blur-3xl animate-pulse-soft"></div>
+            <div
+              className="absolute top-20 left-40 w-60 h-60 rounded-full bg-info-100/30 blur-3xl animate-pulse-soft"
+              style={{ animationDelay: "1.5s" }}
+            ></div>
+          </div>
+          <div className="container px-4 md:px-6 relative z-10">
+            <div className="flex flex-col items-center justify-center space-y-4 text-center">
+              <div className="space-y-2">
+                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl animate-fade-in-down text-text-primary">
+                  Questions You Might Have
+                </h2>
+              </div>
+            </div>
+            <div className="mx-auto max-w-3xl py-12 space-y-4">
+              {[
+                {
+                  question: "Will recording sermons distract me or others?",
+                  answer:
+                    "Not at all! Just tap record once and put your phone away. TabletNotes works quietly in the background with no distracting lights or notifications.",
+                },
+                {
+                  question: "Is my privacy protected?",
+                  answer:
+                    "Absolutely. Your recordings stay on your device unless you choose to back them up. We believe your spiritual journey is personal.",
+                },
+                {
+                  question: "Do I need to be online during church?",
+                  answer:
+                    "Nope! TabletNotes works completely offline during recording. You'll only need internet later if you want to back up or access advanced features.",
+                },
+                {
+                  question: "How is this different from just using my phone's recorder?",
+                  answer:
+                    "Unlike basic recording apps, TabletNotes understands the context of sermons. We provide transcripts, recognize Bible verses, create summaries, and organize everything in a way that helps your spiritual growth.",
+                },
+              ].map((faq, index) => (
+                <div
+                  key={index}
+                  className="bg-white/80 backdrop-blur-sm rounded-lg border border-secondary-200 animate-fade-in-up"
+                  style={{ animationDelay: `${0.1 * (index + 1)}s` }}
+                >
+                  <button
+                    onClick={() => toggleFaq(index)}
+                    className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-bg-secondary/50 transition-colors rounded-lg"
+                  >
+                    <h3 className="text-lg font-medium text-text-primary">{faq.question}</h3>
+                    <ChevronDown
+                      className={`h-5 w-5 text-text-secondary transition-transform duration-200 ${
+                        openFaq === index ? "rotate-180" : ""
+                      }`}
+                    />
+                  </button>
+                  {openFaq === index && (
+                    <div className="px-6 pb-4">
+                      <p className="text-text-secondary">{faq.answer}</p>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
         <section id="download" className="w-full py-12 md:py-24 lg:py-32 border-t relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-b from-white via-info-50 to-white z-0">
             <div className="absolute top-1/4 left-1/4 w-64 h-64 rounded-full bg-primary-100/30 blur-3xl animate-pulse-soft"></div>
@@ -641,17 +727,17 @@ export default function LandingPage() {
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
                 <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl animate-fade-in-down text-text-primary">
-                  Start capturing your sermons today.
+                  Start remembering what matters
                 </h2>
                 <p
                   className="max-w-[700px] text-text-secondary md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed animate-fade-in-down"
                   style={{ animationDelay: "0.1s" }}
                 >
-                  Join our beta program and be among the first to experience Tablet.
+                  Be the first to know when TabletNotes launches and get exclusive early access.
                 </p>
               </div>
               <div className="w-full max-w-md space-y-2 animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
-                <EmailSignupForm buttonText="Notify Me" />
+                <EmailSignupForm buttonText="Join the Waitlist" />
               </div>
               <div
                 className="flex flex-col sm:flex-row gap-4 mt-6 animate-fade-in-up"
