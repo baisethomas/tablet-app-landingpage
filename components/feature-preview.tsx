@@ -80,39 +80,81 @@ export function FeaturePreview() {
           <div className="grid gap-8 lg:grid-cols-2 items-center">
             {/* App Screenshot/Demo */}
             <div className="relative">
-              {appScreenshots[currentScreen].feature === "transcription" ? (
-                <div className={`flex items-center justify-center w-full h-[600px] transition-all duration-300 ${fade ? 'opacity-100' : 'opacity-0'}`}>
+              {/* Desktop: fixed height, object-contain */}
+              {appScreenshots[currentScreen].feature === "transcription" && (
+                <div className={`hidden sm:flex items-center justify-center w-full h-[600px] transition-all duration-300 ${fade ? 'opacity-100' : 'opacity-0'}`}>
                   <img
                     src="/images/tablet-notes-transcript.gif"
                     alt="Tablet Notes AI Transcription Demo"
-                    className="rounded-xl w-full h-auto"
+                    className="rounded-xl object-contain h-[600px] w-auto max-w-full"
                   />
                 </div>
-              ) : appScreenshots[currentScreen].feature === "summary" ? (
-                <div className={`flex items-center justify-center w-full h-[600px] transition-all duration-300 ${fade ? 'opacity-100' : 'opacity-0'}`}>
+              )}
+              {/* Mobile: responsive, no fixed height */}
+              {appScreenshots[currentScreen].feature === "transcription" && (
+                <div className={`flex sm:hidden items-center justify-center w-full transition-all duration-300 ${fade ? 'opacity-100' : 'opacity-0'}`}>
                   <img
-                    src="/images/tablet-notes-summary.gif"
-                    alt="Tablet Notes Smart Summaries Demo"
-                    className="rounded-xl w-full h-auto"
+                    src="/images/tablet-notes-transcript.gif"
+                    alt="Tablet Notes AI Transcription Demo"
+                    className="rounded-xl w-full h-auto max-w-full"
                   />
                 </div>
-              ) : appScreenshots[currentScreen].feature === "notes" ? (
-                <div className={`flex items-center justify-center w-full h-[600px] transition-all duration-300 ${fade ? 'opacity-100' : 'opacity-0'}`}>
-                  <img
-                    src="/images/tablet-notes-notes.gif"
-                    alt="Tablet Notes Real-Time Notes Demo"
-                    className="rounded-xl w-full h-auto"
-                  />
-                </div>
-              ) : appScreenshots[currentScreen].feature === "recording" ? (
-                <div className={`flex items-center justify-center w-full h-[600px] transition-all duration-300 ${fade ? 'opacity-100' : 'opacity-0'}`}>
-                  <img
-                    src="/images/tablet-notes-recording.gif"
-                    alt="Tablet Notes One-Tap Recording Demo"
-                    className="rounded-xl w-full h-auto"
-                  />
-                </div>
-              ) : (
+              )}
+              {appScreenshots[currentScreen].feature === "summary" && (
+                <>
+                  <div className={`hidden sm:flex items-center justify-center w-full h-[600px] transition-all duration-300 ${fade ? 'opacity-100' : 'opacity-0'}`}>
+                    <img
+                      src="/images/tablet-notes-summary.gif"
+                      alt="Tablet Notes Smart Summaries Demo"
+                      className="rounded-xl object-contain h-[600px] w-auto max-w-full"
+                    />
+                  </div>
+                  <div className={`flex sm:hidden items-center justify-center w-full transition-all duration-300 ${fade ? 'opacity-100' : 'opacity-0'}`}>
+                    <img
+                      src="/images/tablet-notes-summary.gif"
+                      alt="Tablet Notes Smart Summaries Demo"
+                      className="rounded-xl w-full h-auto max-w-full"
+                    />
+                  </div>
+                </>
+              )}
+              {appScreenshots[currentScreen].feature === "notes" && (
+                <>
+                  <div className={`hidden sm:flex items-center justify-center w-full h-[600px] transition-all duration-300 ${fade ? 'opacity-100' : 'opacity-0'}`}>
+                    <img
+                      src="/images/tablet-notes-notes2.gif"
+                      alt="Tablet Notes Real-Time Notes Demo"
+                      className="rounded-xl object-contain h-[600px] w-auto max-w-full"
+                    />
+                  </div>
+                  <div className={`flex sm:hidden items-center justify-center w-full transition-all duration-300 ${fade ? 'opacity-100' : 'opacity-0'}`}>
+                    <img
+                      src="/images/tablet-notes-notes2.gif"
+                      alt="Tablet Notes Real-Time Notes Demo"
+                      className="rounded-xl w-full h-auto max-w-full"
+                    />
+                  </div>
+                </>
+              )}
+              {appScreenshots[currentScreen].feature === "recording" && (
+                <>
+                  <div className={`hidden sm:flex items-center justify-center w-full h-[600px] transition-all duration-300 ${fade ? 'opacity-100' : 'opacity-0'}`}>
+                    <img
+                      src="/images/tablet-notes-recording.gif"
+                      alt="Tablet Notes One-Tap Recording Demo"
+                      className="rounded-xl object-contain h-[600px] w-auto max-w-full"
+                    />
+                  </div>
+                  <div className={`flex sm:hidden items-center justify-center w-full transition-all duration-300 ${fade ? 'opacity-100' : 'opacity-0'}`}>
+                    <img
+                      src="/images/tablet-notes-recording.gif"
+                      alt="Tablet Notes One-Tap Recording Demo"
+                      className="rounded-xl w-full h-auto max-w-full"
+                    />
+                  </div>
+                </>
+              )}
+              {!(appScreenshots[currentScreen].feature === "transcription" || appScreenshots[currentScreen].feature === "summary" || appScreenshots[currentScreen].feature === "notes" || appScreenshots[currentScreen].feature === "recording") && (
                 <div className="relative mx-auto w-full max-w-sm">
                   {/* Phone frame */}
                   <div className="relative bg-gray-900 rounded-[2.5rem] p-2 shadow-2xl">
