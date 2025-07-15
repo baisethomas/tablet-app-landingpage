@@ -149,7 +149,7 @@ export default function LandingPage() {
                   <div className="flex items-center gap-4 text-white/80 text-sm justify-center lg:justify-start">
                     <div className="flex items-center gap-1">
                       <Users className="h-4 w-4" />
-                      <span>3 months free at launch</span>
+                      <span>Limited spots remaining</span>
                     </div>
                     <div className="flex items-center gap-1">
                       <Clock className="h-4 w-4" />
@@ -533,10 +533,12 @@ export default function LandingPage() {
                 <p className="text-sm text-text-secondary mb-4">
                   <strong>Limited spots remaining</strong>
                 </p>
+                {/*
                 <div className="w-full max-w-md mx-auto bg-secondary-200 rounded-full h-2">
                   <div className="bg-gradient-to-r from-primary-500 to-info-500 h-2 rounded-full" style={{ width: "78%" }}></div>
                 </div>
                 <p className="text-xs text-text-secondary mt-2">78% of beta spots filled</p>
+                */}
               </div>
             </div>
           </div>
