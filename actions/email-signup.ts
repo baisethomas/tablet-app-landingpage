@@ -13,6 +13,9 @@ const emailSchema = z.object({
   consent: z.boolean().refine((val) => val === true, {
     message: "You must agree to receive emails",
   }),
+  name: z.string().optional(),
+  role: z.string().optional(),
+  church: z.string().optional(),
 })
 
 type EmailFormData = z.infer<typeof emailSchema>
@@ -22,9 +25,12 @@ export async function subscribeToNewsletter(formData: FormData) {
     // Extract and validate form data
     const email = formData.get("email") as string
     const consent = formData.get("consent") === "on"
+    const name = formData.get("name") as string || undefined
+    const role = formData.get("role") as string || undefined
+    const church = formData.get("church") as string || undefined
 
     // Validate the data
-    const validatedData = emailSchema.parse({ email, consent })
+    const validatedData = emailSchema.parse({ email, consent, name, role, church })
 
     // Check if API key is available
     if (!process.env.EMAIL_PROVIDER_API_KEY) {
@@ -35,16 +41,27 @@ export async function subscribeToNewsletter(formData: FormData) {
       }
     }
 
-    // Store the subscriber (in a real app, you'd save this to a database)
-    console.log(`New subscriber: ${validatedData.email}`)
+    // Store the beta subscriber (in a real app, you'd save this to a database)
+    console.log(`New beta subscriber:`, {
+      email: validatedData.email,
+      name: validatedData.name,
+      role: validatedData.role,
+      church: validatedData.church,
+      signupDate: new Date().toISOString()
+    })
 
     // Send welcome email using Resend's default domain for testing
     try {
       const { data, error } = await resend.emails.send({
-        from: "Tablet App <hello@updates.tabletnotes.io>", // Using your verified domain
+        from: "TabletNotes Beta <hello@updates.tabletnotes.io>", // Using your verified domain
         to: validatedData.email,
-        subject: "Welcome to Tablet App Beta",
-        html: WelcomeEmailTemplate({ email: validatedData.email }),
+        subject: "Welcome to the TabletNotes Beta Program! 🎉",
+        html: WelcomeEmailTemplate({ 
+          email: validatedData.email, 
+          name: validatedData.name,
+          role: validatedData.role,
+          church: validatedData.church
+        }),
       })
 
       if (error) {
@@ -55,13 +72,13 @@ export async function subscribeToNewsletter(formData: FormData) {
             error.message.includes("domain is not verified"))
         ) {
           console.log(
-            `Email signup recorded for ${validatedData.email}, but welcome email not sent due to domain verification requirement`,
+            `Beta signup recorded for ${validatedData.email}, but welcome email not sent due to domain verification requirement`,
           )
 
           // Still return success to the user since we recorded their signup
           return {
             success: true,
-            message: "Thanks for signing up! We've added you to our beta list and will notify you when we launch.",
+            message: "Welcome to the TabletNotes Beta! You'll receive an email invitation when testing begins in Q1 2025.",
           }
         }
 
@@ -78,7 +95,7 @@ export async function subscribeToNewsletter(formData: FormData) {
       // Return success response with email sent
       return {
         success: true,
-        message: "Thanks for signing up! Check your inbox for a confirmation email.",
+        message: "Welcome to the TabletNotes Beta! Check your inbox for your confirmation email with next steps.",
       }
     } catch (emailError) {
       // If email sending fails completely, still record the signup as successful
@@ -86,7 +103,7 @@ export async function subscribeToNewsletter(formData: FormData) {
 
       return {
         success: true,
-        message: "Thanks for signing up! We've added you to our beta list and will notify you when we launch.",
+        message: "Welcome to the TabletNotes Beta! You'll receive an email invitation when testing begins in Q1 2025.",
       }
     }
   } catch (error) {

@@ -1,0 +1,1 @@
+// Testimonial section intentionally removed until real user feedback is available.

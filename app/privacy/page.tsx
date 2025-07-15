@@ -1,93 +1,198 @@
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { ChevronLeft } from "lucide-react"
+import React from "react";
+import { LogoLink } from "@/components/logo";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { MobileNav } from "@/components/mobile-nav";
 
 export default function PrivacyPolicyPage() {
   return (
     <div className="flex min-h-screen flex-col bg-bg-primary text-text-primary">
-      <div className="container max-w-4xl px-4 py-12 mx-auto">
-        <Link
-          href="/"
-          className="inline-flex items-center mb-8 text-primary-500 hover:text-primary-600 transition-colors"
-        >
-          <ChevronLeft className="mr-1 h-4 w-4" />
-          <span>Back to Home</span>
-        </Link>
-
-        <div className="prose prose-slate max-w-none">
-          <h1 className="text-4xl font-bold mb-6 flex items-center gap-2">
-            <span className="text-3xl">🔐</span> Privacy Policy — <em>Tablet</em>
-          </h1>
-
-          <p className="text-lg font-medium">
-            <strong>Effective Date:</strong>{" "}
-            {new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}
-          </p>
-
-          <p className="my-6">
-            Your privacy is important to us. This policy explains how we collect, use, and protect your information.
-          </p>
-
-          <h2 className="text-2xl font-bold mt-8 mb-4">1. Information We Collect</h2>
-          <ul className="list-disc pl-6 space-y-1">
-            <li>
-              <strong>Account Info:</strong> Email address, password (encrypted), and optional display name.
-            </li>
-            <li>
-              <strong>Usage Data:</strong> Sermon recordings, summaries, timestamps, and notes.
-            </li>
-            <li>
-              <strong>Device Info:</strong> Device ID, operating system, and app usage logs.
-            </li>
-          </ul>
-
-          <h2 className="text-2xl font-bold mt-8 mb-4">2. How We Use Your Data</h2>
-          <p>We use your data to:</p>
-          <ul className="list-disc pl-6 space-y-1">
-            <li>Transcribe and summarize sermons</li>
-            <li>Save and organize your notes</li>
-            <li>Improve app performance and personalize your experience</li>
-          </ul>
-          <p className="mt-4">
-            We <strong>do not sell or share your data</strong> with third parties for marketing purposes.
-          </p>
-
-          <h2 className="text-2xl font-bold mt-8 mb-4">3. Data Storage</h2>
-          <p>Your data is stored securely in the cloud. All transmissions are encrypted in transit and at rest.</p>
-
-          <h2 className="text-2xl font-bold mt-8 mb-4">4. Third-Party Services</h2>
-          <p>
-            We use third-party APIs strictly to enhance the app's core features. These
-            services have their own privacy practices.
-          </p>
-
-          <h2 className="text-2xl font-bold mt-8 mb-4">5. Your Rights</h2>
-          <p>You can:</p>
-          <ul className="list-disc pl-6 space-y-1">
-            <li>Request deletion of your account and all associated data</li>
-            <li>Export your data at any time</li>
-            <li>Opt out of non-essential notifications</li>
-          </ul>
-
-          <h2 className="text-2xl font-bold mt-8 mb-4">6. Children's Privacy</h2>
-          <p>Tablet is not intended for children under 13. We do not knowingly collect data from minors.</p>
-
-          <h2 className="text-2xl font-bold mt-8 mb-4">7. Changes to Policy</h2>
-          <p>We may update this policy to reflect changes in our practices. We'll notify you of significant changes.</p>
-
-          <div className="mt-12 pt-8 border-t border-secondary-200">
-            <p className="text-sm text-text-secondary">
-              If you have any questions about our Privacy Policy, please contact us at privacy@tabletapp.com
+      <header className="px-6 lg:px-8 h-20 flex items-center justify-between border-b fixed top-0 left-0 right-0 bg-white z-50">
+        <LogoLink className="mr-8" />
+        <nav className="hidden md:flex gap-6 sm:gap-8 items-center">
+          <Link
+            className="text-sm font-medium hover:underline underline-offset-4 transition-all duration-200 hover:-translate-y-0.5 text-text-primary"
+            href="/#features"
+          >
+            Features
+          </Link>
+          <Link
+            className="text-sm font-medium hover:underline underline-offset-4 transition-all duration-200 hover:-translate-y-0.5 text-text-primary"
+            href="/#beta"
+          >
+            Beta Access
+          </Link>
+          <Link
+            className="text-sm font-medium hover:underline underline-offset-4 transition-all duration-200 hover:-translate-y-0.5 text-text-primary"
+            href="/#roadmap"
+          >
+            Roadmap
+          </Link>
+          <Button
+            size="sm"
+            className="bg-primary-500 hover:bg-primary-600 text-white"
+            asChild
+          >
+            <Link href="/#signup">Join Beta</Link>
+          </Button>
+        </nav>
+        <MobileNav
+          links={[
+            { href: "/#features", label: "Features" },
+            { href: "/#beta", label: "Beta Access" },
+            { href: "/#roadmap", label: "Roadmap" },
+            { href: "/#signup", label: "Join Beta" },
+          ]}
+        />
+      </header>
+      <main className="flex-1 pt-20">
+        <div className="container mx-auto max-w-3xl px-4 py-12 flex flex-col items-center">
+          <article className="w-full bg-gradient-to-br from-primary-50 via-info-50 to-white rounded-2xl shadow-md p-8 md:p-12">
+            <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl mb-4 text-text-primary text-center">TabletNotes Privacy Policy</h1>
+            <p className="text-text-secondary text-center mb-8">
+              <strong>Effective Date:</strong> [Date of Beta Release]<br/>
+              <strong>Last Updated:</strong> [Date of Beta Release]
             </p>
-
-            <div className="mt-8">
-              <Button asChild>
-                <Link href="/">Return to Home</Link>
-              </Button>
+            <div className="prose prose-lg prose-headings:text-primary-700 dark:prose-invert max-w-none">
+              <h2>Introduction</h2>
+              <p>TabletNotes ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our mobile application and related services.</p>
+              <h2>Information We Collect</h2>
+              <h3>Personal Information You Provide</h3>
+              <ul>
+                <li><strong>Account Information</strong>: Email address, display name (optional)</li>
+                <li><strong>Audio Recordings</strong>: Sermon recordings and related notes you create</li>
+                <li><strong>User-Generated Content</strong>: Notes, summaries, and annotations you add to recordings</li>
+              </ul>
+              <h3>Automatically Collected Information</h3>
+              <ul>
+                <li><strong>Usage Data</strong>: App usage patterns, feature usage, and performance metrics</li>
+                <li><strong>Device Information</strong>: Device type, operating system version, app version</li>
+                <li><strong>Technical Data</strong>: Crash reports, error logs (anonymized)</li>
+              </ul>
+              <h3>Information from Third-Party Services</h3>
+              <ul>
+                <li><strong>Transcription Data</strong>: Audio transcriptions processed by AssemblyAI</li>
+                <li><strong>AI-Generated Content</strong>: Summaries generated by OpenAI services</li>
+                <li><strong>Biblical References</strong>: Scripture lookups via Bible API</li>
+              </ul>
+              <h2>How We Use Your Information</h2>
+              <h3>Primary Uses</h3>
+              <ul>
+                <li><strong>Core Functionality</strong>: Recording, transcribing, and summarizing audio content</li>
+                <li><strong>Cloud Storage</strong>: Syncing your data across devices securely</li>
+                <li><strong>User Experience</strong>: Personalizing features and improving app performance</li>
+                <li><strong>Support</strong>: Providing customer service and technical support</li>
+              </ul>
+              <h3>Secondary Uses</h3>
+              <ul>
+                <li><strong>Analytics</strong>: Understanding app usage to improve features (aggregated, anonymized data)</li>
+                <li><strong>Communication</strong>: Sending important updates about your account or the service</li>
+              </ul>
+              <h2>Data Processing and Storage</h2>
+              <h3>Cloud Storage</h3>
+              <ul>
+                <li>Audio files are encrypted and stored securely using Supabase</li>
+                <li>Transcription processing occurs on secure AssemblyAI servers</li>
+                <li>AI summarization uses OpenAI's secure infrastructure</li>
+                <li>All data transmission uses industry-standard encryption (TLS 1.2+)</li>
+              </ul>
+              <h3>Data Retention</h3>
+              <ul>
+                <li><strong>Active Accounts</strong>: Data retained while your account is active</li>
+                <li><strong>Deleted Content</strong>: Permanently deleted within 30 days of user deletion</li>
+                <li><strong>Account Deletion</strong>: All user data deleted within 90 days of account closure</li>
+              </ul>
+              <h3>Data Location</h3>
+              <ul>
+                <li>Primary storage: United States (Supabase infrastructure)</li>
+                <li>Processing: AssemblyAI (US), OpenAI (US), Bible API (US)</li>
+                <li>No international transfers outside approved service providers</li>
+              </ul>
+              <h2>Third-Party Services</h2>
+              <h3>Service Providers We Use</h3>
+              <ol>
+                <li><strong>Supabase</strong>: Database and file storage</li>
+                <li><strong>AssemblyAI</strong>: Audio transcription services</li>
+                <li><strong>OpenAI</strong>: AI-powered summarization</li>
+                <li><strong>Scripture API</strong>: Biblical reference lookups</li>
+                <li><strong>Netlify</strong>: Backend API hosting</li>
+              </ol>
+              <h3>Data Sharing</h3>
+              <ul>
+                <li>We do NOT sell your personal information</li>
+                <li>We do NOT share content with third parties except as necessary for core functionality</li>
+                <li>Service providers are bound by strict data protection agreements</li>
+              </ul>
+              <h2>Your Rights and Choices</h2>
+              <h3>Data Control</h3>
+              <ul>
+                <li><strong>Access</strong>: View all your stored data through the app</li>
+                <li><strong>Correction</strong>: Edit or update your information at any time</li>
+                <li><strong>Deletion</strong>: Delete specific recordings or your entire account</li>
+                <li><strong>Export</strong>: Download your data in a standard format</li>
+              </ul>
+              <h3>Privacy Settings</h3>
+              <ul>
+                <li><strong>Recording Permissions</strong>: Control microphone access</li>
+                <li><strong>Sync Settings</strong>: Choose what data syncs to the cloud</li>
+                <li><strong>Notification Preferences</strong>: Manage communication settings</li>
+              </ul>
+              <h3>Account Management</h3>
+              <ul>
+                <li><strong>Subscription Control</strong>: Manage your subscription tier</li>
+                <li><strong>Data Portability</strong>: Export your content before canceling</li>
+                <li><strong>Account Deletion</strong>: Permanently delete your account and all data</li>
+              </ul>
+              <h2>Security Measures</h2>
+              <h3>Technical Safeguards</h3>
+              <ul>
+                <li><strong>Encryption</strong>: All data encrypted in transit and at rest</li>
+                <li><strong>Authentication</strong>: Secure login with industry-standard protocols</li>
+                <li><strong>Access Controls</strong>: Strict limits on who can access your data</li>
+                <li><strong>Regular Audits</strong>: Ongoing security assessments and updates</li>
+              </ul>
+              <h3>Your Security</h3>
+              <ul>
+                <li>Use strong, unique passwords</li>
+                <li>Keep your app updated to the latest version</li>
+                <li>Report any security concerns immediately</li>
+              </ul>
+              <h2>Children's Privacy</h2>
+              <p>TabletNotes is not intended for children under 13. We do not knowingly collect personal information from children under 13. If you believe we have collected information from a child under 13, please contact us immediately.</p>
+              <h2>Changes to This Policy</h2>
+              <p>We may update this Privacy Policy to reflect changes in our practices or legal requirements. We will:</p>
+              <ul>
+                <li>Notify you of significant changes via email or app notification</li>
+                <li>Post the updated policy with a new effective date</li>
+                <li>Maintain previous versions for your reference</li>
+              </ul>
+              <h2>Contact Information</h2>
+              <p>If you have questions or concerns about this Privacy Policy:</p>
+              <ul>
+                <li><strong>Email</strong>: privacy@tabletnotes.io</li>
+                <li><strong>Website</strong>: <a href="https://www.tabletnotes.io/privacy">https://www.tabletnotes.io/privacy</a></li>
+                <li><strong>Address</strong>: [Your Business Address]</li>
+              </ul>
+              <p>For data protection inquiries or to exercise your privacy rights, please use the contact information above.</p>
+              <h2>California Privacy Rights (CCPA)</h2>
+              <p>If you are a California resident, you have additional rights:</p>
+              <ul>
+                <li>Right to know what personal information is collected</li>
+                <li>Right to delete personal information</li>
+                <li>Right to opt-out of sale (we don't sell your information)</li>
+                <li>Right to non-discrimination for exercising your rights</li>
+              </ul>
+              <h2>International Users</h2>
+              <p>If you are located outside the United States, please note that your information will be transferred to and processed in the United States, where our servers are located and our service providers operate.</p>
+              <hr />
+              <p><em>This Privacy Policy is designed to comply with applicable privacy laws including CCPA, GDPR principles, and App Store requirements. By using TabletNotes, you agree to the collection and use of information in accordance with this policy.</em></p>
             </div>
-          </div>
+          </article>
+          <Button asChild className="mt-8" size="lg">
+            <Link href="/">Back to Home</Link>
+          </Button>
         </div>
-      </div>
+      </main>
     </div>
-  )
+  );
 }
