@@ -7,16 +7,10 @@ import { Button } from "@/components/ui/button"
 
 const appScreenshots = [
   {
-    title: "One-Tap Recording",
-    description: "Start recording sermons with a single tap",
-    image: "/images/app-recording.png",
-    feature: "recording"
-  },
-  {
-    title: "Real-Time Notes",
-    description: "Take timestamped notes during the sermon",
-    image: "/images/app-notes.png", 
-    feature: "notes"
+    title: "Smart Summaries",
+    description: "AI-generated sermon summaries",
+    image: "/images/app-summary.png",
+    feature: "summary"
   },
   {
     title: "AI Transcription",
@@ -25,10 +19,16 @@ const appScreenshots = [
     feature: "transcription"
   },
   {
-    title: "Smart Summaries",
-    description: "AI-generated sermon summaries",
-    image: "/images/app-summary.png",
-    feature: "summary"
+    title: "Real-Time Notes",
+    description: "Take timestamped notes during the sermon",
+    image: "/images/app-notes.png", 
+    feature: "notes"
+  },
+  {
+    title: "One-Tap Recording",
+    description: "Start recording sermons with a single tap",
+    image: "/images/app-recording.png",
+    feature: "recording"
   }
 ]
 
