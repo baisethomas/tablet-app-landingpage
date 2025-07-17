@@ -23,13 +23,18 @@ export function AuthModal({ isOpen, onClose, onSuccess }: AuthModalProps) {
 
   const handleAuth = async (e: React.FormEvent) => {
     e.preventDefault()
+    if (!supabase) {
+      setError('Authentication service is not available')
+      return
+    }
+    
     setIsLoading(true)
     setError('')
     setMessage('')
 
     try {
       if (isSignUp) {
-        const { error } = await supabase.auth.signUp({
+        const { error } = await supabase.auth.signInWithOtp({
           email,
           options: {
             emailRedirectTo: `${window.location.origin}/members`
