@@ -51,7 +51,7 @@ export function MembersHeader() {
             size="sm"
             onClick={() => setIsAuthModalOpen(true)}
           >
-            Member Login
+            Sign In
           </Button>
         )}
       </nav>
@@ -118,7 +118,7 @@ export function MembersHeader() {
                     }}
                     className="w-full"
                   >
-                    Member Login
+                    Sign In
                   </Button>
                 </div>
               )}

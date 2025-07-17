@@ -89,7 +89,7 @@ export function Header({ scrollToSection }: HeaderProps) {
               size="sm"
               onClick={() => setIsAuthModalOpen(true)}
             >
-              Member Login
+              Sign In
             </Button>
             <Button
               size="sm"

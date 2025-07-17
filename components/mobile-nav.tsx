@@ -124,7 +124,7 @@ export function MobileNav({ links, onAuthClick, onSignOut, user }: MobileNavProp
                   }}
                   className="w-full"
                 >
-                  Member Login
+                  Sign In
                 </Button>
               </div>
             )}
