@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import './globals.css'
+import { AuthProvider } from '@/contexts/auth-context'
 
 export const metadata: Metadata = {
   title: 'Tablet Notes',
@@ -18,7 +19,11 @@ export default function RootLayout({
         <title>Tablet Notes</title>
         <link rel="icon" type="image/png" href="/images/tablet-notes-logo.png" />
       </head>
-      <body>{children}</body>
+      <body>
+        <AuthProvider>
+          {children}
+        </AuthProvider>
+      </body>
     </html>
   )
 }

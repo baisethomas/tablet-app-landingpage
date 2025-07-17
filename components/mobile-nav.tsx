@@ -1,13 +1,19 @@
 "use client"
-import { X, Menu } from "lucide-react"
+import { X, Menu, User, LogOut } from "lucide-react"
 import { Logo } from "@/components/logo"
 import { useMobileMenu } from "@/hooks/use-mobile-menu"
+import { Button } from "@/components/ui/button"
+import { User as UserType } from "@supabase/supabase-js"
+import Link from "next/link"
 
 interface MobileNavProps {
   links: { href: string; label: string }[]
+  onAuthClick?: () => void
+  onSignOut?: () => void
+  user?: UserType | null
 }
 
-export function MobileNav({ links }: MobileNavProps) {
+export function MobileNav({ links, onAuthClick, onSignOut, user }: MobileNavProps) {
   const { isMobileMenuOpen, toggleMobileMenu, closeMobileMenu } = useMobileMenu()
 
   // Function to handle smooth scrolling
@@ -63,19 +69,65 @@ export function MobileNav({ links }: MobileNavProps) {
           </div>
           <nav className="flex flex-col p-4 space-y-4">
             {links.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="text-lg font-medium py-2 text-text-primary hover:text-primary-500 transition-colors"
-                onClick={(e) => {
-                  e.preventDefault()
-                  const sectionId = link.href.replace("#", "")
-                  scrollToSection(sectionId)
-                }}
-              >
-                {link.label}
-              </a>
+              link.href.startsWith('#') ? (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className="text-lg font-medium py-2 text-text-primary hover:text-primary-500 transition-colors"
+                  onClick={(e) => {
+                    e.preventDefault()
+                    const sectionId = link.href.replace("#", "")
+                    scrollToSection(sectionId)
+                  }}
+                >
+                  {link.label}
+                </a>
+              ) : (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="text-lg font-medium py-2 text-text-primary hover:text-primary-500 transition-colors"
+                  onClick={closeMobileMenu}
+                >
+                  {link.label}
+                </Link>
+              )
             ))}
+            
+            {user ? (
+              <div className="pt-4 border-t space-y-3">
+                <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                  <User className="h-4 w-4" />
+                  {user.email}
+                </div>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => {
+                    onSignOut?.()
+                    closeMobileMenu()
+                  }}
+                  className="w-full gap-2"
+                >
+                  <LogOut className="h-4 w-4" />
+                  Sign Out
+                </Button>
+              </div>
+            ) : (
+              <div className="pt-4 border-t">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => {
+                    onAuthClick?.()
+                    closeMobileMenu()
+                  }}
+                  className="w-full"
+                >
+                  Member Login
+                </Button>
+              </div>
+            )}
           </nav>
         </div>
       </div>

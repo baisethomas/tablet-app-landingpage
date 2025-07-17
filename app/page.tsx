@@ -13,6 +13,7 @@ import { MobileNav } from "@/components/mobile-nav"
 import { BetaBadge } from "@/components/beta-badge"
 import { ProgressTimeline } from "@/components/progress-timeline"
 import { FeaturePreview } from "@/components/feature-preview"
+import { Header } from "@/components/header"
 
 export default function LandingPage() {
   const [openFaq, setOpenFaq] = useState<number | null>(null)
@@ -38,56 +39,7 @@ export default function LandingPage() {
 
   return (
     <div className="flex min-h-screen flex-col bg-bg-primary text-text-primary">
-      <header className="px-6 lg:px-8 h-20 flex items-center justify-between border-b fixed top-0 left-0 right-0 bg-white z-50">
-        <LogoLink className="mr-8" />
-        <nav className="hidden md:flex gap-6 sm:gap-8 items-center">
-          <Link
-            className="text-sm font-medium hover:underline underline-offset-4 transition-all duration-200 hover:-translate-y-0.5 text-text-primary"
-            href="#features"
-            onClick={(e) => {
-              e.preventDefault()
-              scrollToSection("features")
-            }}
-          >
-            Features
-          </Link>
-          <Link
-            className="text-sm font-medium hover:underline underline-offset-4 transition-all duration-200 hover:-translate-y-0.5 text-text-primary"
-            href="#beta"
-            onClick={(e) => {
-              e.preventDefault()
-              scrollToSection("beta")
-            }}
-          >
-            Beta Access
-          </Link>
-          <Link
-            className="text-sm font-medium hover:underline underline-offset-4 transition-all duration-200 hover:-translate-y-0.5 text-text-primary"
-            href="#roadmap"
-            onClick={(e) => {
-              e.preventDefault()
-              scrollToSection("roadmap")
-            }}
-          >
-            Roadmap
-          </Link>
-          <Button
-            size="sm"
-            className="bg-primary-500 hover:bg-primary-600 text-white"
-            onClick={() => scrollToSection("signup")}
-          >
-            Join Beta
-          </Button>
-        </nav>
-        <MobileNav
-          links={[
-            { href: "#features", label: "Features" },
-            { href: "#beta", label: "Beta Access" },
-            { href: "#roadmap", label: "Roadmap" },
-            { href: "#signup", label: "Join Beta" },
-          ]}
-        />
-      </header>
+      <Header scrollToSection={scrollToSection} />
       <main className="flex-1 pt-20">
         {" "}
         {/* Added padding-top to account for fixed header */}
