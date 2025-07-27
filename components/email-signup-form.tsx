@@ -78,7 +78,7 @@ export function EmailSignupForm({
             <p className="text-sm text-success-600 mt-2">{result.message}</p>
             <div className="mt-4 p-3 bg-success-100 rounded-lg">
               <p className="text-xs text-success-700 font-medium">
-                🎉 You'll receive an email invitation when beta testing begins in Q1 2025
+                🎉 You'll receive an email invitation when beta testing begins in Q3 2025
               </p>
             </div>
           </div>
