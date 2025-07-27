@@ -67,7 +67,7 @@ export function WelcomeEmailTemplate({ email, name }: WelcomeEmailTemplateProps)
         </ul>
       </div>
       <div style="text-align: center; margin: 30px 0;">
-        <a href="https://tabletnotes.app/community" style="background: #4A6D8C; color: white; padding: 12px 30px; text-decoration: none; border-radius: 6px; font-weight: bold;">JOIN OUR BETA COMMUNITY</a>
+        <a href="https://chat.whatsapp.com/EBMWAvWkVGK8mwaBIfFCOU?mode=ac_t" style="background: #4A6D8C; color: white; padding: 12px 30px; text-decoration: none; border-radius: 6px; font-weight: bold;">JOIN OUR BETA COMMUNITY</a>
       </div>
       <div style="margin: 30px 0;">
         <p style="color: #666; font-size: 16px;">We're grateful to have you with us on this journey. Tablet Notes was born from our own desire to more deeply engage with spiritual teachings, and we're excited to see how it enhances your connection to the Word.</p>
@@ -78,7 +78,7 @@ export function WelcomeEmailTemplate({ email, name }: WelcomeEmailTemplateProps)
         <p style="color: #666; font-size: 14px; margin: 0 0 10px 0;">
           You're receiving this email because you signed up for Tablet Notes Beta.<br>
           Have questions? Reply directly to this email - we read every message.<br>
-          Tablet Notes | <a href="https://tabletnotes.app/privacy" style="color: #4A6D8C;">Privacy Policy</a> | <a href="https://tabletnotes.app/terms" style="color: #4A6D8C;">Terms of Service</a>
+          Tablet Notes | <a href="https://tabletnotes.io/privacy" style="color: #4A6D8C;">Privacy Policy</a> | <a href="https://tabletnotes.app/terms" style="color: #4A6D8C;">Terms of Service</a>
         </p>
       </div>
       <div style="border-top: 1px solid #e7e5e4; margin-top: 30px; padding-top: 20px; text-align: center;">
