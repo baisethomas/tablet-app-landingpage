@@ -4,19 +4,13 @@ import { CheckCircle2, Circle, Clock } from "lucide-react"
 
 const milestones = [
   {
-    phase: "Alpha Testing",
-    description: "Core recording and transcription features",
-    status: "current" as const,
-    date: "Q2 2025"
-  },
-  {
-    phase: "Beta Launch", 
+    phase: "Beta Launch",
     description: "AI summarization and cloud sync",
-    status: "upcoming" as const,
+    status: "current" as const,
     date: "Q3 2025"
   },
   {
-    phase: "Feature Complete",
+    phase: "Feature Complete", 
     description: "Export, sharing, and advanced notes",
     status: "upcoming" as const,
     date: "Q3 2025"
