@@ -7,6 +7,7 @@ import {
   Mic, FileText, Book, PenTool, Archive, Mail, ChevronDown, 
   Smartphone, Brain, Cloud, Share2, Zap, MessageSquare, Clock, Users 
 } from "lucide-react"
+import { FaBullseye, FaDollarSign, FaComments, FaUsers, FaLock, FaBolt } from "react-icons/fa"
 import { LogoLink } from "@/components/logo"
 import { EmailSignupForm } from "@/components/email-signup-form"
 import { MobileNav } from "@/components/mobile-nav"
@@ -271,7 +272,7 @@ export default function LandingPage() {
                 style={{ animationDelay: "0.2s" }}
               >
                 <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary-500 text-white">
-                  <span className="text-xl font-bold">🎯</span>
+                  <FaBullseye className="text-xl" />
                 </div>
                 <h3 className="text-xl font-bold text-text-primary">First Access</h3>
                 <p className="text-center text-text-secondary">
@@ -284,7 +285,7 @@ export default function LandingPage() {
                 style={{ animationDelay: "0.3s" }}
               >
                 <div className="flex h-12 w-12 items-center justify-center rounded-full bg-success-500 text-white">
-                  <span className="text-xl font-bold">💰</span>
+                  <FaDollarSign className="text-xl" />
                 </div>
                 <h3 className="text-xl font-bold text-text-primary">3 Months Free</h3>
                 <p className="text-center text-text-secondary">
@@ -297,7 +298,7 @@ export default function LandingPage() {
                 style={{ animationDelay: "0.4s" }}
               >
                 <div className="flex h-12 w-12 items-center justify-center rounded-full bg-info-500 text-white">
-                  <span className="text-xl font-bold">🗣️</span>
+                  <FaComments className="text-xl" />
                 </div>
                 <h3 className="text-xl font-bold text-text-primary">Shape the Product</h3>
                 <p className="text-center text-text-secondary">
@@ -310,7 +311,7 @@ export default function LandingPage() {
                 style={{ animationDelay: "0.5s" }}
               >
                 <div className="flex h-12 w-12 items-center justify-center rounded-full bg-warning-500 text-white">
-                  <span className="text-xl font-bold">👥</span>
+                  <FaUsers className="text-xl" />
                 </div>
                 <h3 className="text-xl font-bold text-text-primary">Exclusive Community</h3>
                 <p className="text-center text-text-secondary">
@@ -323,7 +324,7 @@ export default function LandingPage() {
                 style={{ animationDelay: "0.6s" }}
               >
                 <div className="flex h-12 w-12 items-center justify-center rounded-full bg-secondary-500 text-white">
-                  <span className="text-xl font-bold">🔒</span>
+                  <FaLock className="text-xl" />
                 </div>
                 <h3 className="text-xl font-bold text-text-primary">Priority Support</h3>
                 <p className="text-center text-text-secondary">
@@ -336,7 +337,7 @@ export default function LandingPage() {
                 style={{ animationDelay: "0.7s" }}
               >
                 <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary-500 text-white">
-                  <span className="text-xl font-bold">⚡</span>
+                  <FaBolt className="text-xl" />
                 </div>
                 <h3 className="text-xl font-bold text-text-primary">Latest Features</h3>
                 <p className="text-center text-text-secondary">

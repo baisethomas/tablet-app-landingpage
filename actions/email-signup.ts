@@ -55,7 +55,7 @@ export async function subscribeToNewsletter(formData: FormData) {
       const { data, error } = await resend.emails.send({
         from: "TabletNotes Beta <hello@updates.tabletnotes.io>", // Using your verified domain
         to: validatedData.email,
-        subject: "Welcome to the TabletNotes Beta Program! 🎉",
+        subject: "Welcome to the TabletNotes Beta Program!",
         html: WelcomeEmailTemplate({ 
           email: validatedData.email, 
           name: validatedData.name,

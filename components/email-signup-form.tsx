@@ -8,6 +8,7 @@ import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { subscribeToNewsletter } from "@/actions/email-signup"
 import { Loader2, CheckCircle2, AlertCircle, Users } from "lucide-react"
+import { FaGift } from "react-icons/fa"
 import { isValidEmail } from "@/utils/email-utils"
 
 interface EmailSignupFormProps {
@@ -78,7 +79,7 @@ export function EmailSignupForm({
             <p className="text-sm text-success-600 mt-2">{result.message}</p>
             <div className="mt-4 p-3 bg-success-100 rounded-lg">
               <p className="text-xs text-success-700 font-medium">
-                🎉 You'll receive an email invitation when beta testing begins in Q3 2025
+                <FaGift className="inline mr-1" /> You'll receive an email invitation when beta testing begins in Q3 2025
               </p>
             </div>
           </div>

@@ -1,6 +1,7 @@
 "use client"
 
 import { CheckCircle2, Circle, Clock } from "lucide-react"
+import { FaRocket } from "react-icons/fa"
 
 const milestones = [
   {
@@ -93,7 +94,8 @@ export function ProgressTimeline() {
                     </p>
                     {milestone.status === "current" && (
                       <div className="inline-flex items-center rounded-lg bg-primary-50 px-3 py-1 text-sm font-medium text-primary-700">
-                        🚀 Currently in progress
+                        <FaRocket className="inline mr-1" />
+                        <span>Currently in progress</span>
                       </div>
                     )}
                   </div>
