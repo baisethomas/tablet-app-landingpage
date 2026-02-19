@@ -1,11 +1,19 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
+import { Inter } from 'next/font/google'
 import './globals.css'
-import { AuthProvider } from '@/contexts/auth-context'
+
+const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 
 export const metadata: Metadata = {
-  title: 'Tablet Notes',
-  description: 'Tablet Notes: AI-powered sermon note-taking, transcription, and insights. Join the beta for the next generation of sermon engagement.',
-  generator: 'v0.dev',
+  title: 'Tablet Notes — Write it on the tablet of your heart.',
+  description:
+    'A focused note-taking platform designed for sermon reflection and lasting retention. Coming to iPhone.',
+}
+
+export const viewport: Viewport = {
+  themeColor: '#1F1F23',
+  width: 'device-width',
+  initialScale: 1,
 }
 
 export default function RootLayout({
@@ -14,16 +22,11 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={inter.variable}>
       <head>
-        <title>Tablet Notes</title>
         <link rel="icon" type="image/png" href="/images/tablet-notes-logo.png" />
       </head>
-      <body>
-        <AuthProvider>
-          {children}
-        </AuthProvider>
-      </body>
+      <body className="font-sans antialiased">{children}</body>
     </html>
   )
 }
