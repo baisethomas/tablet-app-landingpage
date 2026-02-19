@@ -24,7 +24,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={inter.variable}>
       <head>
-        <link rel="icon" type="image/png" href="/images/tablet-notes-logo.png" />
+        <link rel="icon" type="image/png" href="/images/logomark-black.png" />
       </head>
       <body className="font-sans antialiased">{children}</body>
     </html>
