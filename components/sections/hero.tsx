@@ -46,6 +46,9 @@ export function Hero() {
         <p className="text-xs text-foreground/40 mb-20">No spam. One email at launch.</p>
       </div>
 
+      {/* Bottom Gradient Fade */}
+      <div className="absolute bottom-0 left-0 right-0 h-[50%] bg-gradient-to-t from-[#1F1F23] via-[#1F1F23]/60 to-transparent z-30 pointer-events-none" />
+
       {/* Device Mockups */}
       <div className="relative z-10 w-full max-w-5xl mx-auto px-6 mt-auto flex justify-center items-end h-[450px] md:h-[600px]">
         {/* Secondary Device (Dark Mode) - Offset Left/Back */}
