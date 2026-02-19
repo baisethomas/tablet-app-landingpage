@@ -1,5 +1,4 @@
 import Image from "next/image"
-import { PenTool } from "lucide-react"
 import { SignupForm } from "@/components/signup-form"
 
 export function Hero() {
@@ -7,7 +6,14 @@ export function Hero() {
     <section className="relative min-h-screen flex flex-col items-center pt-16 pb-0 md:pt-24 overflow-hidden selection:bg-[#2F4FA2] selection:text-foreground bg-[#1F1F23]">
       {/* Background Nib Watermark */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-full pointer-events-none z-0 flex justify-center opacity-[0.03] nib-watermark">
-        <PenTool className="mt-[-100px] text-foreground" width={600} height={600} strokeWidth={0.5} />
+        <Image
+          src="/images/logomark-black.png"
+          alt=""
+          width={600}
+          height={600}
+          className="mt-[-100px] invert"
+          aria-hidden="true"
+        />
       </div>
 
       {/* Navigation / Logo */}
