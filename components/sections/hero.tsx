@@ -1,5 +1,5 @@
 import Image from "next/image"
-import { SignupForm } from "@/components/signup-form"
+import Link from "next/link"
 
 export function Hero() {
   return (
@@ -41,9 +41,14 @@ export function Hero() {
           Coming to iPhone
         </p>
 
-        {/* Form */}
-        <SignupForm variant="dark" />
-        <p className="text-xs text-foreground/40 mb-20">No spam. One email at launch.</p>
+        {/* CTA Button */}
+        <Link
+          href="#waitlist"
+          className="inline-block bg-[#2F4FA2] text-foreground text-sm font-medium tracking-wide uppercase px-8 py-4 rounded hover:bg-[#2F4FA2]/90 transition-colors"
+        >
+          Join the Waitlist
+        </Link>
+        <p className="text-xs text-foreground/40 mt-4 mb-20">No spam. One email at launch.</p>
       </div>
 
       {/* Bottom Gradient Fade */}
