@@ -18,7 +18,7 @@ export function Hero() {
 
       {/* Navigation / Logo */}
       <header className="relative z-10 w-full max-w-6xl mx-auto px-6 mb-16 md:mb-24 flex justify-center">
-        <span className="tracking-[0.2em] text-sm font-medium text-foreground/90">
+        <span className="tracking-[0.2em] text-lg font-medium text-foreground/90">
           Tablet Notes
         </span>
       </header>
