@@ -53,9 +53,9 @@ export async function subscribeToNewsletter(formData: FormData) {
     // Send welcome email using Resend's default domain for testing
     try {
       const { data, error } = await resend.emails.send({
-        from: "TabletNotes Beta <hello@updates.tabletnotes.io>", // Using your verified domain
+        from: "Tablet Notes Beta <hello@updates.tabletnotes.io>", // Using your verified domain
         to: validatedData.email,
-        subject: "Welcome to the TabletNotes Beta Program!",
+        subject: "Welcome to the Tablet Notes Beta Program!",
         html: WelcomeEmailTemplate({ 
           email: validatedData.email, 
           name: validatedData.name,
@@ -78,7 +78,7 @@ export async function subscribeToNewsletter(formData: FormData) {
           // Still return success to the user since we recorded their signup
           return {
             success: true,
-            message: "Welcome to the TabletNotes Beta! You'll receive an email invitation when testing begins in Q1 2025.",
+            message: "Welcome to the Tablet Notes Beta! You'll receive an email invitation when testing begins in Q1 2025.",
           }
         }
 
@@ -95,7 +95,7 @@ export async function subscribeToNewsletter(formData: FormData) {
       // Return success response with email sent
       return {
         success: true,
-        message: "Welcome to the TabletNotes Beta! Check your inbox for your confirmation email with next steps.",
+        message: "Welcome to the Tablet Notes Beta! Check your inbox for your confirmation email with next steps.",
       }
     } catch (emailError) {
       // If email sending fails completely, still record the signup as successful
@@ -103,7 +103,7 @@ export async function subscribeToNewsletter(formData: FormData) {
 
       return {
         success: true,
-        message: "Welcome to the TabletNotes Beta! You'll receive an email invitation when testing begins in Q1 2025.",
+        message: "Welcome to the Tablet Notes Beta! You'll receive an email invitation when testing begins in Q1 2025.",
       }
     }
   } catch (error) {

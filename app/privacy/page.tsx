@@ -20,7 +20,7 @@ export default function PrivacyPolicyPage() {
 
           <div className="prose prose-lg prose-headings:font-medium prose-headings:tracking-tight max-w-none text-[#1F1F23]/80">
             <h2>Introduction</h2>
-            <p>{"TabletNotes (\"we,\" \"our,\" or \"us\") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our mobile application and related services."}</p>
+            <p>{"Tablet Notes (\"we,\" \"our,\" or \"us\") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our mobile application and related services."}</p>
 
             <h2>Information We Collect</h2>
             <h3>Personal Information You Provide</h3>
@@ -77,7 +77,7 @@ export default function PrivacyPolicyPage() {
             </ul>
 
             <h2>{"Children's Privacy"}</h2>
-            <p>TabletNotes is not intended for children under 13. We do not knowingly collect personal information from children under 13.</p>
+            <p>Tablet Notes is not intended for children under 13. We do not knowingly collect personal information from children under 13.</p>
 
             <h2>Changes to This Policy</h2>
             <p>We may update this Privacy Policy to reflect changes in our practices or legal requirements. We will notify you of significant changes via email or app notification.</p>

@@ -1,4 +1,4 @@
-// Stripe integration for TabletNotes subscription management
+// Stripe integration for Tablet Notes subscription management
 // 
 // To configure:
 // 1. Install Stripe: npm install stripe @stripe/stripe-js

@@ -11,7 +11,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Architecture
 
-This is a Next.js 15 landing page for TabletNotes, a sermon recording and transcription app. The project uses the App Router with server actions for email signups.
+This is a Next.js 15 landing page for Tablet Notes, a sermon recording and transcription app. The project uses the App Router with server actions for email signups.
 
 ### Key Technologies
 - **Framework**: Next.js 15 with App Router
