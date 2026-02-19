@@ -4,7 +4,7 @@ export default function PrivacyPolicyPage() {
   return (
     <div className="flex min-h-screen flex-col bg-[#F7F8FA] text-[#1F1F23]">
       <header className="px-6 lg:px-8 h-16 flex items-center justify-center border-b border-[#1F1F23]/5 bg-[#F7F8FA]">
-        <Link href="/" className="uppercase tracking-[0.2em] text-sm font-medium text-[#1F1F23]/90 hover:text-[#1F1F23] transition-colors">
+        <Link href="/" className="tracking-[0.2em] text-sm font-medium text-[#1F1F23]/90 hover:text-[#1F1F23] transition-colors">
           Tablet Notes
         </Link>
       </header>
