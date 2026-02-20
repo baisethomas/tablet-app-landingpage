@@ -64,7 +64,8 @@ export function Hero() {
           transition={{ duration: 0.5, ease, delay: 0.5 }}
           className="text-lg md:text-xl text-foreground/85 font-normal tracking-tight mb-2"
         >
-          A focused note-taking platform designed for sermon reflection and lasting retention.
+          Most sermons fade by Sunday afternoon.<br />
+          Tablet Notes is built to help the ones that matter endure.
         </motion.h2>
 
         <motion.p
@@ -86,7 +87,7 @@ export function Hero() {
             href="#waitlist"
             className="inline-block bg-[#2F4FA2] text-foreground text-sm font-medium tracking-wide uppercase px-8 py-4 rounded hover:bg-[#2F4FA2]/90 transition-colors"
           >
-            Join the Waitlist
+            Notify Me at Launch
           </Link>
           <p className="text-xs text-foreground/40 mt-4 mb-20">No spam. One email at launch.</p>
         </motion.div>
