@@ -1,8 +1,8 @@
 "use client"
 
 import Image from "next/image"
+import Link from "next/link"
 import { motion } from "framer-motion"
-import { SignupForm } from "@/components/signup-form"
 
 const ease = [0.25, 0.1, 0.25, 1]
 
@@ -77,13 +77,18 @@ export function Hero() {
           Coming to iPhone
         </motion.p>
 
-        {/* Signup Form */}
+        {/* CTA Button */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, ease, delay: 0.65 }}
         >
-          <SignupForm variant="dark" />
+          <Link
+            href="#waitlist"
+            className="inline-block bg-[#2F4FA2] text-foreground text-sm font-medium tracking-wide uppercase px-8 py-4 rounded hover:bg-[#2F4FA2]/90 transition-colors"
+          >
+            Notify me at launch
+          </Link>
           <p className="text-xs text-foreground/40 mt-4 mb-20">No spam. One email at launch.</p>
         </motion.div>
       </div>

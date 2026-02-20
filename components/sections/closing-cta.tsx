@@ -1,7 +1,7 @@
 "use client"
 
+import Link from "next/link"
 import { FadeUp } from "@/components/motion"
-import { SignupForm } from "@/components/signup-form"
 
 export function ClosingCta() {
   return (
@@ -24,7 +24,12 @@ export function ClosingCta() {
         </FadeUp>
 
         <FadeUp delay={0.3}>
-          <SignupForm variant="blue" />
+          <Link
+            href="#waitlist"
+            className="inline-block bg-[#FFFFFF] text-[#2F4FA2] text-sm font-medium tracking-wide uppercase px-8 py-4 rounded hover:bg-[#FFFFFF]/90 transition-colors"
+          >
+            Notify me at launch
+          </Link>
         </FadeUp>
       </div>
     </section>
