@@ -18,15 +18,13 @@ export function Footer() {
           >
             <Instagram className="h-4 w-4" />
           </Link>
-          <Link
-            href="https://www.facebook.com/tabletnotesapp"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Tablet Notes on Facebook"
-            className="hover:text-[#1F1F23] transition-colors"
+          <span
+            aria-label="Facebook coming soon"
+            title="Facebook coming soon"
+            className="text-[#1F1F23]/30 cursor-not-allowed"
           >
             <Facebook className="h-4 w-4" />
-          </Link>
+          </span>
           <Link
             href="/privacy"
             className="hover:text-[#1F1F23] transition-colors"
