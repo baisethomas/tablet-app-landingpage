@@ -15,7 +15,7 @@ export default function PrivacyPolicyPage() {
             Privacy Policy
           </h1>
           <p className="text-[#1F1F23]/60 text-center text-sm mb-12">
-            <strong>Effective Date:</strong> TBD &mdash; <strong>Last Updated:</strong> TBD
+            <strong>Effective Date:</strong> July 17, 2025 &mdash; <strong>Last Updated:</strong> December 21, 2025
           </p>
 
           <div className="prose prose-lg prose-headings:font-medium prose-headings:tracking-tight max-w-none text-[#1F1F23]/80">
