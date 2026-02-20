@@ -1,4 +1,5 @@
 import Link from "next/link"
+import { Facebook, Instagram } from "lucide-react"
 
 export function Footer() {
   return (
@@ -7,7 +8,25 @@ export function Footer() {
         <div className="mb-4 md:mb-0">
           {"\u00A9"} 2026 Tablet Notes
         </div>
-        <div className="flex gap-6">
+        <div className="flex items-center gap-5">
+          <Link
+            href="https://www.instagram.com/tabletnotesapp/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Tablet Notes on Instagram"
+            className="hover:text-[#1F1F23] transition-colors"
+          >
+            <Instagram className="h-4 w-4" />
+          </Link>
+          <Link
+            href="https://www.facebook.com/tabletnotesapp"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Tablet Notes on Facebook"
+            className="hover:text-[#1F1F23] transition-colors"
+          >
+            <Facebook className="h-4 w-4" />
+          </Link>
           <Link
             href="/privacy"
             className="hover:text-[#1F1F23] transition-colors"
