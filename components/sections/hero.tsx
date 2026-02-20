@@ -1,8 +1,8 @@
 "use client"
 
 import Image from "next/image"
-import Link from "next/link"
 import { motion } from "framer-motion"
+import { SignupForm } from "@/components/signup-form"
 
 const ease = [0.25, 0.1, 0.25, 1]
 
@@ -46,14 +46,14 @@ export function Hero() {
           transition={{ duration: 0.5, ease, delay: 0.2 }}
           className="text-4xl md:text-6xl font-medium tracking-tight text-foreground mb-6 leading-[1.1] text-balance"
         >
-          Write it on the<br />tablet of your heart.
+          Write it on the tablet of your heart.
         </motion.h1>
 
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, ease, delay: 0.35 }}
-          className="text-base md:text-lg text-foreground/70 italic font-normal mb-8 max-w-xl mx-auto leading-relaxed"
+          className="text-sm md:text-base text-foreground/70 italic font-normal mb-8 max-w-xl mx-auto leading-relaxed"
         >
           {'"Let love and faithfulness never leave you; bind them around your neck, write them on the tablet of your heart." \u2014 Proverbs 3:3'}
         </motion.p>
@@ -77,18 +77,13 @@ export function Hero() {
           Coming to iPhone
         </motion.p>
 
-        {/* CTA Button */}
+        {/* Signup Form */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, ease, delay: 0.65 }}
         >
-          <Link
-            href="#waitlist"
-            className="inline-block bg-[#2F4FA2] text-foreground text-sm font-medium tracking-wide uppercase px-8 py-4 rounded hover:bg-[#2F4FA2]/90 transition-colors"
-          >
-            Notify Me at Launch
-          </Link>
+          <SignupForm variant="dark" />
           <p className="text-xs text-foreground/40 mt-4 mb-20">No spam. One email at launch.</p>
         </motion.div>
       </div>

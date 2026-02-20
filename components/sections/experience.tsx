@@ -6,17 +6,17 @@ const columns = [
   {
     title: "Capture",
     description:
-      "Take notes as you listen, without distraction. A clean interface that respects the speaker and the message.",
+      "Your pen moves while the message unfolds. A clean, distraction-free space designed to get out of the way.",
   },
   {
     title: "Reflect",
     description:
-      "Review and organize insights after the message. Connect ideas while they are fresh.",
+      "After the message, the work begins. Review what landed, connect what matters, let the ideas settle into something you can act on.",
   },
   {
     title: "Retain",
     description:
-      "Strengthen understanding through active inscription. Keep what matters on the tablet of your heart.",
+      "A note you wrote is a note you kept. Tablet Notes is built around the belief that active inscription is how wisdom takes hold.",
   },
 ]
 

@@ -62,7 +62,7 @@ export function SignupForm({ variant }: SignupFormProps) {
         type="submit"
         className={`w-full sm:w-auto whitespace-nowrap ${buttonClasses} text-sm font-medium px-6 py-3 rounded-md transition-colors duration-200`}
       >
-        {isDark ? "Be notified at launch" : "Be notified"}
+        Notify me at launch
       </button>
     </form>
   )
