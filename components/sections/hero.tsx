@@ -13,7 +13,7 @@ export function Hero() {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 0.03 }}
-        transition={{ duration: 2, ease: "easeOut" }}
+        transition={{ duration: 1.2, ease: "easeOut" }}
         className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-full pointer-events-none z-0 flex justify-center nib-watermark"
       >
         <Image
@@ -30,7 +30,7 @@ export function Hero() {
       <motion.header
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, ease, delay: 0.2 }}
+        transition={{ duration: 0.4, ease, delay: 0.1 }}
         className="relative z-10 w-full max-w-6xl mx-auto px-6 mb-16 md:mb-24 flex justify-center"
       >
         <span className="tracking-[0.2em] text-lg font-medium text-foreground/90">
@@ -43,7 +43,7 @@ export function Hero() {
         <motion.h1
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease, delay: 0.4 }}
+          transition={{ duration: 0.5, ease, delay: 0.2 }}
           className="text-4xl md:text-6xl font-medium tracking-tight text-foreground mb-6 leading-[1.1] text-balance"
         >
           Write it on the<br />tablet of your heart.
@@ -52,7 +52,7 @@ export function Hero() {
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease, delay: 0.6 }}
+          transition={{ duration: 0.5, ease, delay: 0.35 }}
           className="text-base md:text-lg text-foreground/70 italic font-normal mb-8 max-w-xl mx-auto leading-relaxed"
         >
           {'"Let love and faithfulness never leave you; bind them around your neck, write them on the tablet of your heart." \u2014 Proverbs 3:3'}
@@ -61,7 +61,7 @@ export function Hero() {
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease, delay: 0.8 }}
+          transition={{ duration: 0.5, ease, delay: 0.5 }}
           className="text-lg md:text-xl text-foreground/85 font-normal tracking-tight mb-2"
         >
           A focused note-taking platform designed for sermon reflection and lasting retention.
@@ -70,7 +70,7 @@ export function Hero() {
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.5, delay: 1.0 }}
+          transition={{ duration: 0.4, delay: 0.6 }}
           className="text-sm text-foreground/60 mb-10 tracking-wide uppercase"
         >
           Coming to iPhone
@@ -80,7 +80,7 @@ export function Hero() {
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, ease, delay: 1.1 }}
+          transition={{ duration: 0.4, ease, delay: 0.65 }}
         >
           <Link
             href="#waitlist"
@@ -101,7 +101,7 @@ export function Hero() {
         <motion.div
           initial={{ opacity: 0, y: 60 }}
           animate={{ opacity: 0.9, y: 0 }}
-          transition={{ duration: 0.9, ease, delay: 1.3 }}
+          transition={{ duration: 0.7, ease, delay: 0.8 }}
           className="absolute bottom-[-50px] left-1/2 -translate-x-[75%] md:-translate-x-[70%] w-[240px] md:w-[300px] scale-90 origin-bottom-right z-10"
         >
           <Image
@@ -118,7 +118,7 @@ export function Hero() {
         <motion.div
           initial={{ opacity: 0, y: 80 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, ease, delay: 1.2 }}
+          transition={{ duration: 0.7, ease, delay: 0.75 }}
           className="relative bottom-[-40px] w-[260px] md:w-[320px] z-20"
         >
           <Image
