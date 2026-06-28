@@ -3,8 +3,19 @@ interface WelcomeEmailTemplateProps {
   email: string
 }
 
+function escapeHtml(value: string): string {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;")
+}
+
 export function WelcomeEmailTemplate({ name, email }: WelcomeEmailTemplateProps): string {
-  const greeting = name ? `Hi ${name},` : "Hi there,"
+  const safeName = name ? escapeHtml(name) : undefined
+  const safeEmail = escapeHtml(email)
+  const greeting = safeName ? `Hi ${safeName},` : "Hi there,"
 
   return `
 <!DOCTYPE html>
@@ -24,7 +35,7 @@ export function WelcomeEmailTemplate({ name, email }: WelcomeEmailTemplateProps)
                 <h1 style="margin: 0 0 24px; font-size: 24px; font-weight: 500; color: #ffffff; line-height: 1.3;">You're on the list.</h1>
                 <p style="margin: 0 0 16px; font-size: 15px; color: #d1d5db; line-height: 1.6;">${greeting}</p>
                 <p style="margin: 0 0 16px; font-size: 15px; color: #d1d5db; line-height: 1.6;">
-                  Thanks for signing up to be notified when Tablet Notes launches. We'll send one email to <strong style="color: #ffffff;">${email}</strong> when the app is ready for iPhone.
+                  Thanks for signing up to be notified when Tablet Notes launches. We'll send one email to <strong style="color: #ffffff;">${safeEmail}</strong> when the app is ready for iPhone.
                 </p>
                 <p style="margin: 0 0 32px; font-size: 15px; color: #d1d5db; line-height: 1.6;">
                   Built for permanence. Designed for focus.

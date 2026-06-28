@@ -87,7 +87,7 @@ export function SignupForm({ variant }: SignupFormProps) {
           {isPending ? "Joining..." : "Notify me at launch"}
         </button>
       </form>
-      {message && (
+      {message && !isSuccess && (
         <p className="mt-3 text-sm text-red-300">{message}</p>
       )}
       <p className={`mt-3 text-xs ${isDark ? "text-foreground/40" : "text-[#FFFFFF]/60"}`}>

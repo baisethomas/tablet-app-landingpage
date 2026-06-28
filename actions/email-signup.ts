@@ -56,17 +56,22 @@ export async function subscribeToNewsletter(formData: FormData) {
         }
       }
 
-      const { error: segmentError } = await resend.contacts.segments.add({
+      const { error: updateError } = await resend.contacts.update({
         email: validatedData.email,
-        segmentId: WAITLIST_SEGMENT_ID,
+        firstName: validatedData.name,
       })
 
-      if (segmentError && !segmentError.message?.toLowerCase().includes("already")) {
-        console.error("Resend segment add error:", segmentError)
+      if (updateError) {
+        console.error("Resend contact update error:", updateError)
       }
-    } else {
-      console.log("Waitlist contact created:", contact?.id)
+
+      return {
+        success: true,
+        message: `Thanks, ${validatedData.name}! You're already on the list. We'll email you when Tablet Notes launches.`,
+      }
     }
+
+    console.log("Waitlist contact created:", contact?.id)
 
     const { error: emailError } = await resend.emails.send({
       from: FROM_ADDRESS,
