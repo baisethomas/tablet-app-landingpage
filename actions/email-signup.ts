@@ -4,36 +4,31 @@ import { z } from "zod"
 import { Resend } from "resend"
 import { WelcomeEmailTemplate } from "@/components/email-templates/welcome"
 
-// Initialize Resend with the API key
-const resend = new Resend(process.env.EMAIL_PROVIDER_API_KEY)
+const WAITLIST_SEGMENT_ID =
+  process.env.RESEND_WAITLIST_SEGMENT_ID ?? "8782e76a-9bed-4003-9c86-f56c0d924556"
 
-// Email validation schema
+const FROM_ADDRESS = "Tablet Notes <hello@updates.tablenotes.io>"
+
 const emailSchema = z.object({
   email: z.string().email({ message: "Please enter a valid email address" }),
-  consent: z.boolean().refine((val) => val === true, {
-    message: "You must agree to receive emails",
-  }),
-  name: z.string().optional(),
-  role: z.string().optional(),
-  church: z.string().optional(),
+  name: z.string().min(1, { message: "Please enter your first name" }),
 })
 
-type EmailFormData = z.infer<typeof emailSchema>
+function getResend() {
+  const apiKey = process.env.EMAIL_PROVIDER_API_KEY
+  if (!apiKey) return null
+  return new Resend(apiKey)
+}
 
 export async function subscribeToNewsletter(formData: FormData) {
   try {
-    // Extract and validate form data
     const email = formData.get("email") as string
-    const consent = formData.get("consent") === "on"
-    const name = formData.get("name") as string || undefined
-    const role = formData.get("role") as string || undefined
-    const church = formData.get("church") as string || undefined
+    const name = formData.get("name") as string
 
-    // Validate the data
-    const validatedData = emailSchema.parse({ email, consent, name, role, church })
+    const validatedData = emailSchema.parse({ email, name })
 
-    // Check if API key is available
-    if (!process.env.EMAIL_PROVIDER_API_KEY) {
+    const resend = getResend()
+    if (!resend) {
       console.error("Missing EMAIL_PROVIDER_API_KEY environment variable")
       return {
         success: false,
@@ -41,70 +36,59 @@ export async function subscribeToNewsletter(formData: FormData) {
       }
     }
 
-    // Store the beta subscriber (in a real app, you'd save this to a database)
-    console.log(`New beta subscriber:`, {
+    const { data: contact, error: contactError } = await resend.contacts.create({
       email: validatedData.email,
-      name: validatedData.name,
-      role: validatedData.role,
-      church: validatedData.church,
-      signupDate: new Date().toISOString()
+      firstName: validatedData.name,
+      unsubscribed: false,
+      segments: [{ id: WAITLIST_SEGMENT_ID }],
     })
 
-    // Send welcome email using Resend's default domain for testing
-    try {
-      const { data, error } = await resend.emails.send({
-        from: "Tablet Notes Beta <hello@updates.tabletnotes.io>", // Using your verified domain
-        to: validatedData.email,
-        subject: "Welcome to the Tablet Notes Beta Program!",
-        html: WelcomeEmailTemplate({ 
-          email: validatedData.email, 
-          name: validatedData.name,
-          role: validatedData.role,
-          church: validatedData.church
-        }),
-      })
+    if (contactError) {
+      const isDuplicate =
+        contactError.message?.toLowerCase().includes("already") ||
+        contactError.name === "validation_error"
 
-      if (error) {
-        // Check if it's a domain verification error or testing limitation
-        if (
-          error.message &&
-          (error.message.includes("You can only send testing emails") ||
-            error.message.includes("domain is not verified"))
-        ) {
-          console.log(
-            `Beta signup recorded for ${validatedData.email}, but welcome email not sent due to domain verification requirement`,
-          )
-
-          // Still return success to the user since we recorded their signup
-          return {
-            success: true,
-            message: "Welcome to the Tablet Notes Beta! You'll receive an email invitation when testing begins in Q1 2025.",
-          }
-        }
-
-        // For other Resend errors, log and return a generic error
-        console.error("Resend API error:", error)
+      if (!isDuplicate) {
+        console.error("Resend contact creation error:", contactError)
         return {
           success: false,
-          message: "Failed to complete signup. Please try again later.",
+          message: "Failed to join the waitlist. Please try again later.",
         }
       }
 
-      console.log("Email sent successfully:", data)
+      const { error: segmentError } = await resend.contacts.segments.add({
+        email: validatedData.email,
+        segmentId: WAITLIST_SEGMENT_ID,
+      })
 
-      // Return success response with email sent
+      if (segmentError && !segmentError.message?.toLowerCase().includes("already")) {
+        console.error("Resend segment add error:", segmentError)
+      }
+    } else {
+      console.log("Waitlist contact created:", contact?.id)
+    }
+
+    const { error: emailError } = await resend.emails.send({
+      from: FROM_ADDRESS,
+      to: validatedData.email,
+      subject: "You're on the Tablet Notes waitlist",
+      html: WelcomeEmailTemplate({
+        email: validatedData.email,
+        name: validatedData.name,
+      }),
+    })
+
+    if (emailError) {
+      console.error("Resend email error:", emailError)
       return {
         success: true,
-        message: "Welcome to the Tablet Notes Beta! Check your inbox for your confirmation email with next steps.",
+        message: `Thanks, ${validatedData.name}! You're on the list. We'll email you when Tablet Notes launches.`,
       }
-    } catch (emailError) {
-      // If email sending fails completely, still record the signup as successful
-      console.error("Email sending failed:", emailError)
+    }
 
-      return {
-        success: true,
-        message: "Welcome to the Tablet Notes Beta! You'll receive an email invitation when testing begins in Q1 2025.",
-      }
+    return {
+      success: true,
+      message: `Thanks, ${validatedData.name}! Check your inbox for a confirmation email.`,
     }
   } catch (error) {
     console.error("Newsletter subscription error:", error)

@@ -1,6 +1,7 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useTransition } from "react"
+import { subscribeToNewsletter } from "@/actions/email-signup"
 
 interface SignupFormProps {
   variant: "dark" | "blue"
@@ -9,20 +10,35 @@ interface SignupFormProps {
 export function SignupForm({ variant }: SignupFormProps) {
   const [firstName, setFirstName] = useState("")
   const [email, setEmail] = useState("")
-  const [submitted, setSubmitted] = useState(false)
+  const [message, setMessage] = useState<string | null>(null)
+  const [isSuccess, setIsSuccess] = useState(false)
+  const [isPending, startTransition] = useTransition()
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    if (firstName.trim() && email.trim()) {
-      setSubmitted(true)
-    }
+    setMessage(null)
+
+    const formData = new FormData()
+    formData.set("name", firstName.trim())
+    formData.set("email", email.trim())
+
+    startTransition(async () => {
+      const result = await subscribeToNewsletter(formData)
+
+      if (result.success) {
+        setIsSuccess(true)
+        setMessage(result.message)
+      } else {
+        setMessage(result.message)
+      }
+    })
   }
 
-  if (submitted) {
+  if (isSuccess) {
     return (
       <div className="w-full max-w-md mx-auto mb-4">
-        <p className={variant === "dark" ? "text-foreground/80 text-sm" : "text-foreground/90 text-sm"}>
-          Thanks, {firstName}! We will be in touch.
+        <p className={variant === "dark" ? "text-foreground/80 text-sm" : "text-[#FFFFFF]/90 text-sm"}>
+          {message}
         </p>
       </div>
     )
@@ -34,36 +50,49 @@ export function SignupForm({ variant }: SignupFormProps) {
   const inputPlaceholder = isDark ? "placeholder-foreground/40" : "placeholder-foreground/60"
   const inputFocus = isDark ? "focus:border-foreground/30" : "focus:border-foreground/50"
   const buttonClasses = isDark
-    ? "bg-[#2F4FA2] hover:bg-[#243D7C] text-foreground"
-    : "bg-foreground hover:bg-foreground/90 text-[#2F4FA2]"
+    ? "bg-[#2F4FA2] hover:bg-[#243D7C] text-foreground disabled:opacity-60"
+    : "bg-[#FFFFFF] hover:bg-[#FFFFFF]/90 text-[#2F4FA2] disabled:opacity-60"
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="flex flex-col sm:flex-row gap-3 w-full max-w-md mx-auto mb-4"
-    >
-      <input
-        type="text"
-        placeholder="First Name"
-        value={firstName}
-        onChange={(e) => setFirstName(e.target.value)}
-        required
-        className={`w-full sm:w-1/3 ${inputBg} border ${inputBorder} text-foreground ${inputPlaceholder} text-sm px-4 py-3 rounded-md focus:outline-none ${inputFocus} transition-colors`}
-      />
-      <input
-        type="email"
-        placeholder="Email Address"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        required
-        className={`w-full sm:w-2/3 ${inputBg} border ${inputBorder} text-foreground ${inputPlaceholder} text-sm px-4 py-3 rounded-md focus:outline-none ${inputFocus} transition-colors`}
-      />
-      <button
-        type="submit"
-        className={`w-full sm:w-auto whitespace-nowrap ${buttonClasses} text-sm font-medium px-6 py-3 rounded-md transition-colors duration-200`}
+    <div className="w-full max-w-md mx-auto mb-4">
+      <form
+        onSubmit={handleSubmit}
+        className="flex flex-col sm:flex-row gap-3 w-full"
       >
-        Notify me at launch
-      </button>
-    </form>
+        <input
+          type="text"
+          name="name"
+          placeholder="First Name"
+          value={firstName}
+          onChange={(e) => setFirstName(e.target.value)}
+          required
+          disabled={isPending}
+          className={`w-full sm:w-1/3 ${inputBg} border ${inputBorder} text-foreground ${inputPlaceholder} text-sm px-4 py-3 rounded-md focus:outline-none ${inputFocus} transition-colors disabled:opacity-60`}
+        />
+        <input
+          type="email"
+          name="email"
+          placeholder="Email Address"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+          disabled={isPending}
+          className={`w-full sm:w-2/3 ${inputBg} border ${inputBorder} text-foreground ${inputPlaceholder} text-sm px-4 py-3 rounded-md focus:outline-none ${inputFocus} transition-colors disabled:opacity-60`}
+        />
+        <button
+          type="submit"
+          disabled={isPending}
+          className={`w-full sm:w-auto whitespace-nowrap ${buttonClasses} text-sm font-medium px-6 py-3 rounded-md transition-colors duration-200`}
+        >
+          {isPending ? "Joining..." : "Notify me at launch"}
+        </button>
+      </form>
+      {message && (
+        <p className="mt-3 text-sm text-red-300">{message}</p>
+      )}
+      <p className={`mt-3 text-xs ${isDark ? "text-foreground/40" : "text-[#FFFFFF]/60"}`}>
+        No spam. One email at launch.
+      </p>
+    </div>
   )
 }
