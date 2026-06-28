@@ -36,7 +36,7 @@ export function SignupForm({ variant }: SignupFormProps) {
 
   if (isSuccess) {
     return (
-      <div className="w-full max-w-md mx-auto mb-4">
+      <div className="w-full mx-auto mb-4">
         <p className={variant === "dark" ? "text-foreground/80 text-sm" : "text-[#FFFFFF]/90 text-sm"}>
           {message}
         </p>
@@ -54,10 +54,10 @@ export function SignupForm({ variant }: SignupFormProps) {
     : "bg-[#FFFFFF] hover:bg-[#FFFFFF]/90 text-[#2F4FA2] disabled:opacity-60"
 
   return (
-    <div className="w-full max-w-md mx-auto mb-4">
+    <div className="w-full mx-auto mb-4">
       <form
         onSubmit={handleSubmit}
-        className="flex flex-col sm:flex-row gap-3 w-full"
+        className="flex flex-col gap-3 w-full lg:flex-row lg:items-stretch"
       >
         <input
           type="text"
@@ -67,7 +67,7 @@ export function SignupForm({ variant }: SignupFormProps) {
           onChange={(e) => setFirstName(e.target.value)}
           required
           disabled={isPending}
-          className={`w-full sm:w-1/3 ${inputBg} border ${inputBorder} text-foreground ${inputPlaceholder} text-sm px-4 py-3 rounded-md focus:outline-none ${inputFocus} transition-colors disabled:opacity-60`}
+          className={`w-full lg:w-auto lg:min-w-[10rem] lg:flex-shrink-0 ${inputBg} border ${inputBorder} text-foreground ${inputPlaceholder} text-sm px-4 py-3 rounded-md focus:outline-none ${inputFocus} transition-colors disabled:opacity-60`}
         />
         <input
           type="email"
@@ -77,12 +77,12 @@ export function SignupForm({ variant }: SignupFormProps) {
           onChange={(e) => setEmail(e.target.value)}
           required
           disabled={isPending}
-          className={`w-full sm:w-2/3 ${inputBg} border ${inputBorder} text-foreground ${inputPlaceholder} text-sm px-4 py-3 rounded-md focus:outline-none ${inputFocus} transition-colors disabled:opacity-60`}
+          className={`w-full lg:flex-1 lg:min-w-[12rem] ${inputBg} border ${inputBorder} text-foreground ${inputPlaceholder} text-sm px-4 py-3 rounded-md focus:outline-none ${inputFocus} transition-colors disabled:opacity-60`}
         />
         <button
           type="submit"
           disabled={isPending}
-          className={`w-full sm:w-auto whitespace-nowrap ${buttonClasses} text-sm font-medium px-6 py-3 rounded-md transition-colors duration-200`}
+          className={`w-full lg:w-auto lg:flex-shrink-0 whitespace-nowrap ${buttonClasses} text-sm font-medium px-6 py-3 rounded-md transition-colors duration-200`}
         >
           {isPending ? "Joining..." : "Notify me at launch"}
         </button>
