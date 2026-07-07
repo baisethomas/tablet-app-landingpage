@@ -129,9 +129,6 @@ export default function TermsOfUsePage() {
             <p>
               TO THE MAXIMUM EXTENT PERMITTED BY LAW, WE SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, OR ANY LOSS OF DATA, ARISING FROM YOUR USE OF THE APP. OUR TOTAL LIABILITY FOR ANY CLAIM RELATING TO THE APP SHALL NOT EXCEED THE AMOUNT YOU PAID US IN THE 12 MONTHS PRECEDING THE CLAIM.
             </p>
-            <p className="text-sm text-[#1F1F23]/60">
-              Some jurisdictions don&apos;t allow these limitations — this clause may need adjustment depending on where your users are based.
-            </p>
 
             <h2>14. Changes to These Terms</h2>
             <p>
@@ -145,7 +142,7 @@ export default function TermsOfUsePage() {
 
             <h2>16. Governing Law</h2>
             <p>
-              These Terms are governed by the laws of the United States, without regard to conflict of law principles.
+              These Terms are governed by the laws of the State of California, without regard to its conflict of law principles.
             </p>
 
             <h2>17. Contact Us</h2>
