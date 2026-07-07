@@ -26,6 +26,12 @@ export function Footer() {
             <Facebook className="h-4 w-4" />
           </span>
           <Link
+            href="/terms"
+            className="hover:text-[#1F1F23] transition-colors"
+          >
+            Terms of Use
+          </Link>
+          <Link
             href="/privacy"
             className="hover:text-[#1F1F23] transition-colors"
           >
