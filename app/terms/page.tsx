@@ -21,7 +21,7 @@ export default function TermsOfUsePage() {
           <div className="prose prose-lg prose-headings:font-medium prose-headings:tracking-tight max-w-none text-[#1F1F23]/80">
             <h2>1. Acceptance of Terms</h2>
             <p>
-              {"These Terms of Use (\"Terms\") govern your access to and use of Tablet Notes (the \"App\"), operated by Loom & Logic Labs (\"we,\" \"us,\" or \"our\"). By downloading, accessing, or using the App, you agree to be bound by these Terms and our "}
+              {"These Terms of Use (\"Terms\") govern your access to and use of Tablet Notes (the \"App\"), operated by Loom & Logic Labs, LLC (\"we,\" \"us,\" or \"our\"). By downloading, accessing, or using the App, you agree to be bound by these Terms and our "}
               <Link href="/privacy">Privacy Policy</Link>
               {". If you do not agree, do not use the App."}
             </p>
@@ -62,7 +62,7 @@ export default function TermsOfUsePage() {
 
             <h2>6. Your Content and License to Us</h2>
             <p>
-              {"You retain ownership of the audio, notes, and other content you create in the App (\"Your Content\"). By using the App, you grant us a limited, non-exclusive license to store, process, and transmit Your Content solely as necessary to provide the App's functionality (e.g., transcription, summarization, and cloud sync). We do not sell Your Content or use it to train third-party AI models beyond what's needed to generate your transcripts and summaries."}
+              {"You retain ownership of the audio, notes, and other content you create in the App (\"Your Content\"). By using the App, you grant us a limited, non-exclusive license to store, process, and transmit Your Content solely as necessary to provide the App's functionality (e.g., transcription, summarization, and cloud sync). We do not sell Your Content or use it to train AI models."}
             </p>
             <p>
               You are responsible for backing up content you consider important. While we take reasonable steps to protect your data, we do not guarantee against data loss.
